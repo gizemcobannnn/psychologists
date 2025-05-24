@@ -1,9 +1,9 @@
-import { Suspense, lazy } from "react"
-
+import { Suspense,  } from "react"
+//lazy
 export default function AppRoute() {
 
-  const HomePage = lazy(()=> import('../'));
-  const NotFoundPage = lazy(()=> import('../'));
+  //const HomePage = lazy(()=> import('../'));
+  //const NotFoundPage = lazy(()=> import('../'));
   return (
     <>
         <Suspense fallback={null}>
@@ -11,7 +11,7 @@ export default function AppRoute() {
                 <Route path="/" element={<HomePage/>}></Route>
                 <Route></Route>
                 <Route></Route>
-                <Route path="/*" element={NotFoundPage}></Route>
+                <Route path="/*" element={<NotFoundPage/>}></Route>
             </Routes>
         </Suspense>
     </>

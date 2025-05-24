@@ -1,4 +1,4 @@
-import { ErrorMessage } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from 'yup';
 
@@ -23,6 +23,7 @@ export default function Register() {
             initialValues={{name:'',email:'',password:''}}
             validation={registerSchema}
             onSubmit={handleSubmit}>
+            <Form>
             <div>
                 <Field
                     name="name"
@@ -60,6 +61,7 @@ export default function Register() {
                     className="errorMessages">
                 </ErrorMessage>
             </div>
+            </Form>
         </Formik>
     </div>
   )
