@@ -30,30 +30,36 @@ export default function Register() {
         onSubmit={handleSubmit}
       >
         <Form>
-          <div className="fields">
+          <div className="textForm gap-6 mb-4">
             <h1 className="text-4xl">Registration</h1>
-            <p className="text-[#191A1580] opacity-50">
+            <p className="text-[#191A1580] opacity-70">
               Thank you for your interest in our platform! In order to register,
               we need some information. Please provide us with the following
               information.
             </p>
+          </div>
+          <div className="form">
+                   <div className="fields">
             <Field
               name="name"
               placeholder="Name"
               type="text"
               id={nameId}
+              className="formInputs"
             ></Field>
             <ErrorMessage
               name="name"
               component="span"
               className="errorMessages"
             ></ErrorMessage>
+            </div>
             <div>
               <Field
                 name="email"
                 id={emailId}
                 placeholder="Email"
                 type="email"
+                className="formInputs"
               ></Field>
               <ErrorMessage
                 name="email"
@@ -67,6 +73,7 @@ export default function Register() {
                 id={passId}
                 placeholder="Password"
                 type="password"
+                className="formInputs"
               ></Field>
               <ErrorMessage
                 name="password"
@@ -74,6 +81,9 @@ export default function Register() {
                 className="errorMessages"
               ></ErrorMessage>
             </div>
+            <button className="text-white">
+                Sign Up
+            </button>
           </div>
         </Form>
       </Formik>

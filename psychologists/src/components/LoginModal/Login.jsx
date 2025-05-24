@@ -23,15 +23,21 @@ export default function Login() {
         onSubmit={handleLogin}
       >
         <Form>
-          <div className="fields">
-          <h1 className="text-4xl">Log In</h1>
-          <p className="text-[#191A1580] opacity-50">Welcome back! Please enter your credentials to access your account and continue your search for a psychologist.</p>
+          <div className="textForm gap-6 mb-4">
+            <h1 className="text-4xl">Log In</h1>
+            <p className="text-[#191A1580] opacity-70">
+              Welcome back! Please enter your credentials to access your account
+              and continue your search for a psychologist.
+            </p>
+          </div>
+          <div className="form">
+            <div className="fields">
             <Field
               name="email"
               placeholder="Email"
               id={emailId}
               type="email"
-              className="formField"
+              className="formInputs"
             ></Field>
             <ErrorMessage
               name="email"
@@ -39,20 +45,23 @@ export default function Login() {
               className="errorMessages"
             ></ErrorMessage>
           </div>
-
           <div className="fields">
             <Field
               name="password"
               placeholder="Password"
               id={passwordId}
               type="password"
-              className="formField"
+              className="formInputs"
             ></Field>
             <ErrorMessage
               name="password"
               component="span"
               className="errorMessages"
             ></ErrorMessage>
+          </div>
+            <button className="text-white">
+                Log In
+            </button>
           </div>
         </Form>
       </Formik>
