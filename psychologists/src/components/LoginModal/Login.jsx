@@ -19,7 +19,7 @@ export default function Login() {
     <div className="authForm flex flex-col items-start">
       <Formik
         initialValues={{ email: "", password: "" }}
-        validate={loginValidate}
+        validationSchema ={loginValidate}
         onSubmit={handleLogin}
       >
         <Form>

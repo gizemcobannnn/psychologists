@@ -42,3 +42,9 @@
   align-items: flex-start;
   text-align: start;
 }
+
+.errorMessages{
+  display: flex;
+  text-align: start;
+  color:rgb(209, 21, 21)
+}

@@ -26,7 +26,7 @@ export default function Register() {
     <div className="authForm flex flex-col items-start">
       <Formik
         initialValues={{ name: "", email: "", password: "" }}
-        validation={registerSchema}
+        validationSchema = {registerSchema}
         onSubmit={handleSubmit}
       >
         <Form>
