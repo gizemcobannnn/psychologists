@@ -3,12 +3,15 @@ import AppRoute from './routers/AppRoute'
 import Register from './components/RegisterModal/Register'
 import Login from './components/LoginModal/Login'
 import HomePage from './pages/HomePage'
+import ReadFirebase from './components/ReadFirebase/ReadFirebase'
+
+
 function App() {
 
   return (
     <>
-      {/**<AppRoute/>       <Register></Register>    <Login></Login> */}
-      <HomePage/>
+      {/**<AppRoute/>   <HomePage/>    <Register></Register>    <Login></Login> */}
+      <ReadFirebase></ReadFirebase>
 
     </>
   )
