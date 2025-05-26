@@ -5,6 +5,7 @@ import Login from './components/LoginModal/Login'
 import HomePage from './pages/HomePage'
 import ReadFirebase from './components/ReadFirebase/ReadFirebase'
 import PsychologistPage from './pages/PsychologistPage'
+import Header from './components/Header/Header'
 
 function App() {
 
@@ -12,7 +13,10 @@ function App() {
     <>
       {/**<AppRoute/>   <HomePage/>    <Register></Register>    <Login></Login> */}
       {/** <ReadFirebase></ReadFirebase> */}
-      <PsychologistPage></PsychologistPage>
+      {/** <PsychologistPage></PsychologistPage> */}
+      {<Header></Header>}
+      <AppRoute></AppRoute>
+
 
     </>
   )
