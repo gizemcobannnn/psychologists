@@ -61,12 +61,24 @@ export default function PsychologistPage() {
                     <MdFavorite className="text-2xl"></MdFavorite>
                   </div>
                 </div>
-                <div>
-                  <div></div>       
+                <div className="flex flex-row flex-wrap gap-2 mt-5 mb-5  w-full">
+                  {item.experience && (
+                    <div className="bg-[#F3F3F3] text-gray-600 font-semibold rounded-xl p-2">Experience: <span className="text-black">{item.experience}</span></div> 
+                  )}  
+                  {item.license && (
+                    <div className="bg-[#F3F3F3] text-gray-600 font-semibold rounded-xl p-2">License: <span className="text-black">{item.license}</span></div> 
+                  )}    
+                  {item.specialization && (
+                    <div className="bg-[#F3F3F3] text-gray-600 font-semibold rounded-xl p-2">Specialization: <span className="text-black">{item.specialization}</span></div> 
+                  )}
+                  {item.initial_consultation && (
+                    <div className="bg-[#F3F3F3] text-gray-600 font-semibold rounded-xl p-2">Initial Consultation: <span className="text-black">{item.initial_consultation}</span></div> 
+                  )}
+
                 </div>
-                <p className="text-start text-slate-600">{item.about}</p>
+                <p className="text-start text-gray-600">{item.about}</p>
                 <button
-                  className="text-black underline !bg-transparent !border-none p-0 m-0 w-20"
+                  className="text-black underline !bg-transparent !border-none p-0 m-0 w-30"
                 >
                   Read more
                 </button>
