@@ -45,29 +45,28 @@ export default function PsychologistPage() {
       <div id="psyc karts" className="flex flex-row bg-[#FBFBFB] w-screen">
         <ul>
           {psychologists.map((item, index) => (
-            <li key={index} className="flex flex-row gap-5 p-5 border-b border-slate-300">
-              <div className="flex flex-col w-[300px]">
+            <li key={index} className="flex flex-row gap-8 p-5 border-b border-slate-300">
+              <div className="flex flex-col w-[400px] border border-slate-400 rounded-lg p-3">
                 <img src={item.avatar_url} alt="avatar" />
               </div>
               <div className="flex flex-col">
-                <div className="flex flex-row justify-around gap-20">
+                <div className="flex flex-row justify-between gap-20">
                   <div className="flex flex-col items-start">
-                    <p>Psychologist</p>
-                    <p>{item.name}</p>
+                    <p className="text-slate-500 text-0.5xl">Psychologist</p>
+                    <p className="text-black text-2xl font-semibold">{item.name}</p>
                   </div>
                   <div className="flex flex-row gap-2">
-                    <p>Rating: {item.rating} </p>
-                    <p>Price / 1 hour: {item.price_per_hour}</p>
+                    <p className="text-black font-semibold">Rating: {item.rating} </p>
+                    <p className="text-black font-semibold">Price / 1 hour: <span className="text-green-500">{item.price_per_hour}$</span></p>
                     <MdFavorite className="text-2xl"></MdFavorite>
                   </div>
                 </div>
                 <div>
-                  <div></div>
+                  <div></div>       
                 </div>
                 <p className="text-start text-slate-600">{item.about}</p>
                 <button
-                  style={{ all: "unset" }}
-                  className="text-black underline bg-transparent border-none p-0 m-0 w-40"
+                  className="text-black underline !bg-transparent !border-none p-0 m-0 w-20"
                 >
                   Read more
                 </button>
