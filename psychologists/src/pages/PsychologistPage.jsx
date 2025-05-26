@@ -6,6 +6,7 @@ import { UltraHDRLoader } from "three/examples/jsm/Addons.js";
 
 export default function PsychologistPage() {
   const [selectedFilter, setSelectedFilter] = useState("Show All");
+  const [visibleItems, setVisibleItems] = useState(5);
   const psychologists = useSelector(
     (state) => state.psychologists.psychologists
   );
@@ -22,8 +23,11 @@ export default function PsychologistPage() {
     fetchDataPsychologists();
   }, [dispatch]);
   console.log("Psychologists:", psychologists);
+  const loadMore = () => {
+    setVisibleItems ((prev)=> prev +5)
+  }
   return (
-    <div className="flex flex-col gap-5 w-full">
+    <div className="flex flex-col gap-5 w-screen">
       <div className="flex flex-col gap-3 mb-5 items-start">
         <p>Filters</p>
         <select
@@ -31,23 +35,23 @@ export default function PsychologistPage() {
           id="sortOptions"
           value={selectedFilter}
           onChange={(e) => setSelectedFilter(e.target.value)}
-          className="bg-[#54BE96]"
+          className="bg-[#54BE96] text-white p-2 rounded-lg"
         >
-          <option value="A to Z">A to Z</option>
-          <option value="Z to A">Z to A</option>
-          <option value="Less than $10">Less than $10</option>
-          <option value="Greater than $10">Greater than $10</option>
-          <option value="Popular">Popular</option>
-          <option value="Not Popular">Not Popular</option>
-          <option value="Show All">Show All</option>
+          <option value="A to Z" className="bg-white text-gray-600">A to Z</option>
+          <option value="Z to A" className="bg-white text-gray-600">Z to A</option>
+          <option value="Less than $10" className="bg-white text-gray-600">Less than $10</option>
+          <option value="Greater than $10" className="bg-white text-gray-600">Greater than $10</option>
+          <option value="Popular" className="bg-white text-gray-600">Popular</option>
+          <option value="Not Popular" className="bg-white text-gray-600">Not Popular</option>
+          <option value="Show All" className="bg-white text-gray-600">Show All</option>
         </select>
       </div>
-      <div id="psyc karts" className="flex flex-row bg-[#FBFBFB] w-screen">
+      <div id="psyc karts" className="flex flex-col bg-[#FBFBFB]">
         <ul>
-          {psychologists.map((item, index) => (
+          {psychologists.slice(0,visibleItems).map((item, index) => (
             <li key={index} className="flex flex-row gap-8 p-5 border-b border-slate-300">
-              <div className="flex flex-col w-[400px] border border-slate-400 rounded-lg p-3">
-                <img src={item.avatar_url} alt="avatar" />
+              <div className="flex flex-col w-[400px] border border-slate-400 rounded-lg p-3 h-min">
+                <img src={item.avatar_url} alt="avatar" className="w-full h-auto object-cover"/>
               </div>
               <div className="flex flex-col">
                 <div className="flex flex-row justify-between gap-20">
@@ -61,7 +65,7 @@ export default function PsychologistPage() {
                     <MdFavorite className="text-2xl"></MdFavorite>
                   </div>
                 </div>
-                <div className="flex flex-row flex-wrap gap-2 mt-5 mb-5  w-full">
+                <div className="flex flex-row flex-wrap gap-2 mt-5 mb-5">
                   {item.experience && (
                     <div className="bg-[#F3F3F3] text-gray-600 font-semibold rounded-xl p-2">Experience: <span className="text-black">{item.experience}</span></div> 
                   )}  
@@ -76,7 +80,7 @@ export default function PsychologistPage() {
                   )}
 
                 </div>
-                <p className="text-start text-gray-600">{item.about}</p>
+                <p className="text-gray-600 text-justify">{item.about}</p>
                 <button
                   className="text-black underline !bg-transparent !border-none p-0 m-0 w-30"
                 >
@@ -86,6 +90,7 @@ export default function PsychologistPage() {
             </li>
           ))}
         </ul>
+        <button  className="w-30 text-white self-center mt-3" onClick={loadMore}>Load More</button>
       </div>
     </div>
   );
