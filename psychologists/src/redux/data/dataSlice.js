@@ -4,7 +4,7 @@ const initialState = {
     name: "psychologists",
     psychologists:[],
     error:null,
-    filters:[],
+    filters:{},
     psychologist:{},
     favorites:[],
     loading:false
@@ -29,18 +29,18 @@ export const psychologistSlice = createSlice({
     },
     extraReducers: (builder)=> {builder
         .addCase(fetchPsychologists.fulfilled,(state,action)=>{
-            state.psychologist = action.payload;
+            state.psychologists = action.payload;
             state.error = null;
-             state.loading = false;
+            state.loading = false;
 
         })
         .addCase(fetchPsychologists.pending,(state)=>{
-            state.psychologist = [];
+            state.psychologists = [];
             state.error = null;
             state.loading = true;
         })
-        .addCase(fetchPsychologists.failed,(state,action)=>{
-            state.psychologist = [];
+        .addCase(fetchPsychologists.rejected,(state,action)=>{
+            state.psychologists = [];
             state.error = action.payload;
             state.loading = false;
         })
@@ -48,3 +48,4 @@ export const psychologistSlice = createSlice({
 })
 
 export default psychologistSlice.reducer;
+export const { setFilters, setFavorites } = psychologistSlice.actions;
