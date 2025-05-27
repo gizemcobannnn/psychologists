@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { fetchPsychologists } from "../redux/data/dataOps";
 import { useDispatch, useSelector } from "react-redux";
-import { UltraHDRLoader } from "three/examples/jsm/Addons.js";
+import {setFavorites} from "../redux/data/dataSlice";
 
 export default function PsychologistPage() {
   const [selectedFilter, setSelectedFilter] = useState("Show All");
   const [visibleItems, setVisibleItems] = useState(5);
+  const favoritePsychologists = useSelector(state=>state.psychologists.favorites)
   const psychologists = useSelector(
     (state) => state.psychologists.psychologists
   );
@@ -20,12 +21,17 @@ export default function PsychologistPage() {
         console.error("Error fetching psychologists data:", e);
       }
     };
+
     fetchDataPsychologists();
   }, [dispatch]);
   console.log("Psychologists:", psychologists);
   const loadMore = () => {
     setVisibleItems ((prev)=> prev +5)
   }
+  const handleFavorite = (id) => {
+    dispatch(setFavorites(id));
+  }
+
   return (
     <div className="flex flex-col gap-5 w-screen">
       <div className="flex flex-col gap-3 mb-5 items-start">
@@ -56,13 +62,17 @@ export default function PsychologistPage() {
               <div className="flex flex-col">
                 <div className="flex flex-row justify-between gap-20">
                   <div className="flex flex-col items-start">
-                    <p className="text-slate-500 text-0.5xl">Psychologist</p>
+                    <p className="text-slate-500 text-sm">Psychologist</p>
                     <p className="text-black text-2xl font-semibold">{item.name}</p>
                   </div>
                   <div className="flex flex-row gap-2">
                     <p className="text-black font-semibold">Rating: {item.rating} </p>
                     <p className="text-black font-semibold">Price / 1 hour: <span className="text-green-500">{item.price_per_hour}$</span></p>
-                    <MdFavorite className="text-2xl"></MdFavorite>
+                    {favoritePsychologists.includes(item.index)?(
+                      <MdFavorite className="text-2xl" onClick={()=>{handleFavorite(item.index)}}></MdFavorite>
+                    ):(
+                      <MdFavoriteBorder className="text-2xl" onClick={()=>{handleFavorite(item.index)}}></MdFavoriteBorder>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-row flex-wrap gap-2 mt-5 mb-5">
