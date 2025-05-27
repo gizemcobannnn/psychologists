@@ -15,6 +15,8 @@ export default function Header() {
             <IoPersonSharp  className='text-2xl bg-green-600 text-white p-1 rounded-lg w-7 h-7'/>
             <p>name</p>
         </div>
+        <button>Log in</button>
+        <button>Sign up</button>
         <button className='!bg-transparent w-40 !border-gray-500'>Log out</button>
         </div>
     </header>

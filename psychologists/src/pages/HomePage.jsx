@@ -1,4 +1,5 @@
 import mainPhoto from '../assets/mainperson.png'
+import Register from '../components/RegisterModal/Register';
 export default function HomePage() {
   return (
     <div className="flex flex-row w-full gap-40">

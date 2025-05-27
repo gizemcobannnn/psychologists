@@ -28,8 +28,8 @@ export default function PsychologistPage() {
   const loadMore = () => {
     setVisibleItems ((prev)=> prev +5)
   }
-  const handleFavorite = (id) => {
-    dispatch(setFavorites(id));
+  const handleFavorite = (name) => {
+    dispatch(setFavorites(name));
   }
 
   return (
@@ -68,10 +68,10 @@ export default function PsychologistPage() {
                   <div className="flex flex-row gap-2">
                     <p className="text-black font-semibold">Rating: {item.rating} </p>
                     <p className="text-black font-semibold">Price / 1 hour: <span className="text-green-500">{item.price_per_hour}$</span></p>
-                    {favoritePsychologists.includes(item.index)?(
-                      <MdFavorite className="text-2xl" onClick={()=>{handleFavorite(item.index)}}></MdFavorite>
+                    {favoritePsychologists.includes(item.name)?(
+                      <MdFavorite className="text-2xl text-amber-300" onClick={()=>{handleFavorite(item.name)}}></MdFavorite>
                     ):(
-                      <MdFavoriteBorder className="text-2xl" onClick={()=>{handleFavorite(item.index)}}></MdFavoriteBorder>
+                      <MdFavoriteBorder className="text-2xl text-gray-800" onClick={()=>{handleFavorite(item.name)}}></MdFavoriteBorder>
                     )}
                   </div>
                 </div>
