@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import app from '../../firebaseConfig';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-export default function Login() {
+export default function Login({closeModal}) {
   const emailId = useId();
   const passwordId = useId();
 
@@ -42,8 +42,12 @@ export default function Login() {
       >
         {({isSubmitting})=>(
         <Form>
-          <div className="textForm gap-6 mb-4">
-            <h1 className="text-4xl">Log In</h1>
+          <div className="textForm flex flex-col gap-6 mb-4">
+            <div className="flex flex-row justify-between w-full">
+               <h1 className="text-4xl">Log In</h1>
+               <button onClick={closeModal} className="flex">X</button>
+            </div>
+           
             <p className="text-[#191A1580] opacity-70">
               Welcome back! Please enter your credentials to access your account
               and continue your search for a psychologist.

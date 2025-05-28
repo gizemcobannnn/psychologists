@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app from '../../firebaseConfig';
 
-export default function Register() {
+export default function Register({closeModal}) {
   const nameId = useId();
   const emailId = useId();
   const passId = useId();
@@ -51,10 +51,14 @@ export default function Register() {
       >
         {({ isSubmitting }) => (
           <Form>
-            <div className="textForm gap-6 mb-4">
-              <h1 className="text-4xl">Registration</h1>
+            <div className="textForm mb-4 flex flex-row ">
+              <div className="flex flex-row gap-6 justify-between w-full">
+                <h1 className="text-4xl">Registration</h1>
+                <button className="flex" onClick={closeModal} >X</button>
+              </div>
               <p className="text-[#191A1580] opacity-70">
-                Thank you for your interest in our platform! Please provide us with the following information.
+                Thank you for your interest in our platform! Please provide us
+                with the following information.
               </p>
             </div>
 
@@ -67,7 +71,11 @@ export default function Register() {
                   id={nameId}
                   className="formInputs"
                 />
-                <ErrorMessage name="name" component="span" className="errorMessages" />
+                <ErrorMessage
+                  name="name"
+                  component="span"
+                  className="errorMessages"
+                />
               </div>
 
               <div className="fields">
@@ -78,7 +86,11 @@ export default function Register() {
                   id={emailId}
                   className="formInputs"
                 />
-                <ErrorMessage name="email" component="span" className="errorMessages" />
+                <ErrorMessage
+                  name="email"
+                  component="span"
+                  className="errorMessages"
+                />
               </div>
 
               <div className="fields">
@@ -89,10 +101,18 @@ export default function Register() {
                   id={passId}
                   className="formInputs"
                 />
-                <ErrorMessage name="password" component="span" className="errorMessages" />
+                <ErrorMessage
+                  name="password"
+                  component="span"
+                  className="errorMessages"
+                />
               </div>
 
-              <button type="submit" className="text-white mt-4" disabled={isSubmitting}>
+              <button
+                type="submit"
+                className="text-white mt-4"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? "Registering..." : "Sign Up"}
               </button>
             </div>
