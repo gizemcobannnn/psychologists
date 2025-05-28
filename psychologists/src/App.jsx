@@ -16,7 +16,6 @@ function App() {
       {/** <ReadFirebase></ReadFirebase> */}
       {/** <PsychologistPage></PsychologistPage> */}
       {<Header></Header>}
-      <Appointment></Appointment>
       <AppRoute></AppRoute>
 
 

@@ -7,6 +7,7 @@ import {setFavorites} from "../redux/data/dataSlice";
 export default function PsychologistPage() {
   const [selectedFilter, setSelectedFilter] = useState("Show All");
   const [visibleItems, setVisibleItems] = useState(5);
+  const [expandedItems, setExpandedItems] = useState([])
   const favoritePsychologists = useSelector(state=>state.psychologists.favorites)
   const psychologists = useSelector(
     (state) => state.psychologists.psychologists
@@ -31,6 +32,14 @@ export default function PsychologistPage() {
   const handleFavorite = (name) => {
     dispatch(setFavorites(name));
   }
+
+    const toggleExpand = (index) => {
+    setExpandedItems((prevExpanded) =>
+      prevExpanded.includes(index)
+        ? prevExpanded.filter((item) => item !== index)
+        : [...prevExpanded, index]
+    );
+  };
 
   return (
     <div className="flex flex-col gap-5 w-screen">
@@ -93,9 +102,33 @@ export default function PsychologistPage() {
                 <p className="text-gray-600 text-justify">{item.about}</p>
                 <button
                   className="text-black underline !bg-transparent !border-none p-0 m-0 w-30"
+                  onClick={()=>toggleExpand(index)}
                 >
-                  Read more
+                    {expandedItems.includes(index) ? 'Hide' : 'Read more'}
                 </button>
+                                 {expandedItems.includes(index) && item.reviews && (
+                                  <>
+                  <ul className="flex flex-col">{item.reviews.map((it,index)=>(
+                    <li key={index}>
+                      <div className="flex flex-col gap-3">
+                      <div className="flex flex-row gap-5 mt-3">
+                        <div className="bg-green-200 rounded-xl border-none w-9 h-9 flex justify-center items-center">
+                          <p className="text-green-600">{it.reviewer.charAt(0)}</p>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <p className="text-black font-medium">{it.reviewer}</p>
+                          <p>{it.rating}</p>
+                        </div>
+                        </div>
+                        <p className="text-gray-600">{it.comment}</p>
+                        
+                      </div>
+                    </li>
+                  ))}
+                  </ul>
+                  <button className="mt-5 w-60" onClick={}>Make an appoinment</button>
+              </>
+              )}
               </div>
             </li>
           ))}
