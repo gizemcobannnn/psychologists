@@ -3,7 +3,7 @@ import { useId } from "react";
 import * as Yup from "yup";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app from '../../firebaseConfig';
-
+import {createPortal} from 'react-dom'
 export default function Register({closeModal}) {
   const nameId = useId();
   const emailId = useId();
@@ -33,6 +33,7 @@ export default function Register({closeModal}) {
         console.log("User registered:", userCredential.user);
         console.log("Name:", name);
         resetForm();
+        closeModal();
       })
       .catch((error) => {
         console.error("Registration error:", error.code, error.message);
@@ -42,8 +43,9 @@ export default function Register({closeModal}) {
       });
   };
 
-  return (
-    <div className="authForm flex flex-col items-start">
+  return createPortal(
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+    <div className="authForm flex flex-col items-start bg-white">
       <Formik
         initialValues={{ name: "", email: "", password: "" }}
         validationSchema={registerSchema}
@@ -120,5 +122,7 @@ export default function Register({closeModal}) {
         )}
       </Formik>
     </div>
+    </div>, document.body
+
   );
 }

@@ -3,7 +3,7 @@ import { useId } from "react";
 import * as Yup from "yup";
 import app from '../../firebaseConfig';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
+import {createPortal} from "react-dom";
 export default function Login({closeModal}) {
   const emailId = useId();
   const passwordId = useId();
@@ -23,6 +23,7 @@ export default function Login({closeModal}) {
     const user = userCredential.user;
     console.log(user)
     resetForm();
+    closeModal();
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -33,8 +34,9 @@ export default function Login({closeModal}) {
   })
   };
 
-  return (
-    <div className="authForm flex flex-col items-start">
+  return createPortal(
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+     <div className="authForm flex flex-col items-start bg-white">
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema ={loginValidate}
@@ -90,5 +92,6 @@ export default function Login({closeModal}) {
         )}
       </Formik>
     </div>
+    </div>,document.body
   );
 }
