@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage'
 import ReadFirebase from './components/ReadFirebase/ReadFirebase'
 import PsychologistPage from './pages/PsychologistPage'
 import Header from './components/Header/Header'
+import Appointment from './components/Appointment/Appointment'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       {/** <ReadFirebase></ReadFirebase> */}
       {/** <PsychologistPage></PsychologistPage> */}
       {<Header></Header>}
+      <Appointment></Appointment>
       <AppRoute></AppRoute>
 
 
