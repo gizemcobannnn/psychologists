@@ -48,11 +48,11 @@ export default function Header() {
                         <IoPersonSharp className='text-2xl bg-green-600 text-white p-1 rounded-lg w-7 h-7' />
                         <p>name</p>
                     </div>
-                    <button onClick={() => setIsLogModelOpen(true)}>Log in</button>
-                    <button onClick={() => setIsRegModelOpen(true)}>Sign up</button>
+                    <button onClick={() => setIsLogModelOpen(true)} className="authbtn">Log in</button>
+                    <button onClick={() => setIsRegModelOpen(true)} className="authbtn">Sign up</button>
                     {/* Fixed the onClick handler - it was calling the function immediately */}
                     <button 
-                        className='!bg-transparent w-40 !border-gray-500' 
+                        className="authbtn"
                         onClick={() => setIsLogoutModelOpen(true)}
                     >
                         Log out
