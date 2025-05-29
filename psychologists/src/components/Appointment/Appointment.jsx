@@ -25,9 +25,9 @@ export default function Appointment({closeModal,psychologist}) {
           <p className="text-gray-600">You are on the verge of changing your life for the better. Fill out the short form below to book your personal appointment with a professional psychologist. We guarantee confidentiality and respect for your privacy.</p>
         </div>
         <div className="flex flex-row gap-2 mt-4">
-          img
+          <img src={psychologist.avatar_url} alt={psychologist.avatar_url} className="w-20 h-20 rounded-sm" />
           <div>
-            <p className="text-gray-600">Your psychologist</p>
+            <p className="text-gray-600 text-[14px]">Your psychologist</p>
             <p>{psychologist.name}</p>
           </div>
         </div>

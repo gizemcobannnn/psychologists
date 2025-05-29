@@ -178,7 +178,7 @@ export default function PsychologistPage() {
                 </div>
                 <p className="text-gray-600 text-justify">{item.about}</p>
                 <button
-                  className="morebutton w-30"
+                  className="morebutton p-0"
                   onClick={() => toggleExpand(index)}
                 >
                   {expandedItems.includes(index) ? "Hide" : "Read more"}
