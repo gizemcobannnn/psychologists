@@ -2,7 +2,7 @@ import { createPortal } from "react-dom"
 import { Field, Formik ,Form, ErrorMessage} from "formik"
 import { useId } from "react";
 
-export default function Appointment() {
+export default function Appointment({closeModal,psychologist}) {
   const commentId = useId();
   const emailId = useId();
   const clockId = useId();
@@ -15,17 +15,20 @@ export default function Appointment() {
   }
 
   return createPortal(
-    <div className="z-50 fixed justify-center items-center inset-0 bg-black/70 backdrop-blur-sm">
+    <div className="fixed z-50 flex justify-center items-center inset-0 bg-black/70 backdrop-blur-sm">
       <div className="flex flex-col items-start justify-center bg-white p-10 w-[300px] md:w-[500px]">
         <div className="text flex flex-col gap-3">
-          <h2 className="text-3xl">Make an appointment with a psychologist</h2>
+          <div className="flex flex-row justify-between ">
+            <h2 className="text-3xl">Make an appointment with a psychologist</h2>
+            <button className="exit" onClick={closeModal}>X</button>
+          </div>
           <p className="text-gray-600">You are on the verge of changing your life for the better. Fill out the short form below to book your personal appointment with a professional psychologist. We guarantee confidentiality and respect for your privacy.</p>
         </div>
         <div className="flex flex-row gap-2 mt-4">
           img
           <div>
             <p className="text-gray-600">Your psychologist</p>
-            <p>name</p>
+            <p>{psychologist.name}</p>
           </div>
         </div>
         <div className="flex w-full">
