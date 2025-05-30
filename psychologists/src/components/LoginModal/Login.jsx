@@ -32,7 +32,7 @@ export default function Login({closeModal}) {
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    dispatch(setIsLoggedIn(true));
+    dispatch(setIsLoggedIn(false));
     console.log(errorCode,errorMessage)
   }).finally(()=>{
     setSubmitting(false);

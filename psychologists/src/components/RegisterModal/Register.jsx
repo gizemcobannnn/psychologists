@@ -1,14 +1,16 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { useId } from "react";
+import {  useId } from "react";
 import * as Yup from "yup";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app from '../../firebaseConfig';
 import {createPortal} from 'react-dom'
+import { useDispatch } from "react-redux";
+import { setIsRegister } from "../../redux/data/dataSlice";
 export default function Register({closeModal}) {
   const nameId = useId();
   const emailId = useId();
   const passId = useId();
-
+  const dispatch = useDispatch();
   const registerSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, "Name must be at least 3 characters.")
@@ -32,11 +34,13 @@ export default function Register({closeModal}) {
       .then((userCredential) => {
         console.log("User registered:", userCredential.user);
         console.log("Name:", name);
+        dispatch(setIsRegister(true));
         resetForm();
         closeModal();
       })
       .catch((error) => {
         console.error("Registration error:", error.code, error.message);
+        dispatch(setIsRegister(false));
       })
       .finally(() => {
         setSubmitting(false);

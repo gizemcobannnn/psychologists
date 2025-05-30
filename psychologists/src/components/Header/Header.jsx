@@ -12,7 +12,7 @@ export default function Header() {
     const [isLogoutModelOpen, setIsLogoutModelOpen] = useState(false); // Fixed capitalization
     const loggedInUser = useSelector(state=>state.psychologists.loggedInUser);
     const isLoggedIn= useSelector(state=>state.psychologists.isLoggedIn);
-    
+    const isLoggedOut = useSelector(state=>state.psychologists.isLoggedOut);
     console.log(loggedInUser)
     useEffect(() => {
         const handleEscape = (e) => {
@@ -57,10 +57,12 @@ export default function Header() {
           </nav>
           <div className="flex flex-row gap-6 items-center">
             <div className="flex flex-row gap-2 items-center">
-              <IoPersonSharp className="text-2xl bg-green-600 text-white p-1 rounded-lg w-7 h-7" />
-              <p className="text-black">{loggedInUser}</p>
+              {!isLoggedOut && (<>
+                <IoPersonSharp className="text-2xl bg-green-600 text-white p-1 rounded-lg w-7 h-7" />
+                <p className="text-black">{loggedInUser}</p>
+              </>)}
             </div>
-            {!isLoggedIn && (
+            {!isLoggedIn  &&  (
               <button
                 onClick={() => setIsLogModelOpen(true)}
                 className="authbtn"
@@ -69,19 +71,21 @@ export default function Header() {
               </button>
             )}
 
-            {!isLoggedIn && (
+            {!isLoggedIn &&  (
               <button onClick={() => setIsRegModelOpen(true)} className="authbtn">
               Sign up
                 </button>
             )}
 
-            {/* Fixed the onClick handler - it was calling the function immediately */}
+            {isLoggedIn && !isLoggedOut && (
             <button
               className="authbtn"
               onClick={() => setIsLogoutModelOpen(true)}
             >
               Log out
             </button>
+            )}
+
           </div>
         </header>
         {isRegModelOpen && (

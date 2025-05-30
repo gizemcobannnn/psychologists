@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { setFavorites } from "../../redux/data/dataSlice";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useMemo } from "react";
 
 export default function Psychologists({psychologists}) {
   const [visibleItems, setVisibleItems] = useState(5);
@@ -13,7 +14,10 @@ export default function Psychologists({psychologists}) {
   );
   const [selectedPsychologist, setSelectedPsychologist] = useState(null);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
-
+  const [selectedFilter, setSelectedFilter] = useState(
+  JSON.parse(localStorage.getItem("selectedFilter"))
+);
+  console.log(selectedFilter)
   const dispatch = useDispatch();
 
     const loadMore = () => {
@@ -22,6 +26,13 @@ export default function Psychologists({psychologists}) {
     const handleFavorite = (name) => {
       dispatch(setFavorites(name));
     };
+    useEffect(() => {
+  const interval = setInterval(() => {
+    setSelectedFilter(JSON.parse(localStorage.getItem("selectedFilter")));
+  }, 500); // 500ms de bir kontrol et
+
+  return () => clearInterval(interval);
+}, []);
   
     const toggleExpand = (index) => {
       setExpandedItems((prevExpanded) =>
@@ -30,10 +41,30 @@ export default function Psychologists({psychologists}) {
           : [...prevExpanded, index]
       );
     };
+const filteredPsychologists = useMemo(() => {
+  let result = [...psychologists];
+
+  if (selectedFilter === "A to Z") {
+    result.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (selectedFilter === "Z to A") {
+    result.sort((a, b) => b.name.localeCompare(a.name));
+  } else if (selectedFilter === "Less than $10") {
+    result = result.filter((x) => x.price_per_hour < 10);
+  } else if (selectedFilter === "Greater than $10") {
+    result = result.filter((x) => x.price_per_hour > 10);
+  } else if (selectedFilter === "Popular") {
+    result = result.filter((a) => a.rating > 4.5);
+  } else if (selectedFilter === "Not Popular") {
+    result = result.filter((a) => a.rating < 4.5);
+  }
+
+  return result;
+}, [psychologists, selectedFilter]);
+    
   return (
     <div id="psyc karts" className="flex flex-col bg-[#FBFBFB]">
         <ul>
-          {psychologists.slice(0, visibleItems).map((item, index) => (
+          {filteredPsychologists.length>0 ? (filteredPsychologists.slice(0, visibleItems).map((item, index) => (
             <li
               key={index}
               className="flex flex-row gap-8 p-5 border-b border-slate-300"
@@ -149,9 +180,11 @@ export default function Psychologists({psychologists}) {
                 )}
               </div>
             </li>
-          ))}
+          ))):
+            (<p className="text-2xl text-center">No Result</p>)
+            }
         </ul>
-        {psychologists.length > visibleItems && (
+        {filteredPsychologists.length > visibleItems && (
         <button className="w-30 text-white self-center mt-3" onClick={loadMore}>
           Load More
         </button>

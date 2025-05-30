@@ -10,7 +10,10 @@ export default function Filter(){
           name="sortOptions"
           id="sortOptions"
           value={selectedFilter}
-          onChange={(e) => setSelectedFilter(e.target.value)}
+          onChange={(e) => {setSelectedFilter(e.target.value)
+            localStorage.setItem("selectedFilter", JSON.stringify(e.target.value));
+            console.log(JSON.parse(localStorage.getItem("selectedFilter")))
+            }}
           className="bg-[#54BE96] text-white p-2 rounded-lg"
         >
           <option value="A to Z" className="bg-white text-gray-600">
@@ -37,3 +40,4 @@ export default function Filter(){
         </select>
       </div>)
 }
+

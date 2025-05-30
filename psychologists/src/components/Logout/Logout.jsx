@@ -2,18 +2,26 @@ import { createPortal } from "react-dom"
 import { getAuth, signOut } from "firebase/auth";
 import app from '../../firebaseConfig'
 import { Form, Formik } from "formik";
+import { useDispatch } from "react-redux";
+import {setIsLoggedOut} from "../../redux/data/dataSlice"
 export default function Logout({closeModal}) {
-
+  const dispatch = useDispatch();
   const handleLogout = async (values, actions) => {
     const auth = getAuth(app);
+    
     try {
       await signOut(auth);
       console.log("Logout successful");
       closeModal(); // Close the modal after logout
+      dispatch(setIsLoggedOut(true));
     } catch (error) {
       console.log(error);
+      dispatch(setIsLoggedOut(false));
+
     } finally {
       actions.setSubmitting(false);
+      dispatch(setIsLoggedOut(true));
+
     }
   };
 
