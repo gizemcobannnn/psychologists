@@ -151,9 +151,11 @@ export default function Psychologists({psychologists}) {
             </li>
           ))}
         </ul>
+        {psychologists.length > visibleItems && (
         <button className="w-30 text-white self-center mt-3" onClick={loadMore}>
           Load More
         </button>
+        )}
       </div>
   )
 }

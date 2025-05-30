@@ -19,7 +19,7 @@ export default function Logout({closeModal}) {
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="flex flex-col gap-5 bg-white p-15">
+      <div className="flex flex-col gap-5 bg-white p-15 rounded-2xl">
         <Formik onSubmit={handleLogout} initialValues={{}}>
           {({ isSubmitting }) => (
             <Form>

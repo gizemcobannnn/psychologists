@@ -45,7 +45,7 @@ export default function Register({closeModal}) {
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-    <div className="authForm flex flex-col items-start bg-white">
+    <div className="authForm flex flex-col items-start bg-white rounded-2xl">
       <Formik
         initialValues={{ name: "", email: "", password: "" }}
         validationSchema={registerSchema}
