@@ -11,6 +11,6 @@ https://www.figma.com/file/I5vjNb0NsJOpQRnRpMloSY/Psychologists.Services?type=de
 <!--Technical requirements: https://docs.google.com/document/d/1XbBDAmSOA0RxarsYS2X7xfVEuIgBoW4Qkp3gucw1wOc/edit?tab=t.0 -->
 
 Pages   
-      Home   
-      Psychologists   
-      Favorites  
+      Home: View home page  
+      Psychologists: View all psychologists and details
+      Favorites: View favorite psychologists and details
