@@ -4,10 +4,12 @@ import * as Yup from "yup";
 import app from '../../firebaseConfig';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {createPortal} from "react-dom";
+import { useDispatch } from "react-redux";
+import { setUserName , setIsLoggedIn} from "../../redux/data/dataSlice";
 export default function Login({closeModal}) {
   const emailId = useId();
   const passwordId = useId();
-
+  const dispatch = useDispatch();
   const loginValidate = Yup.object().shape({
     email: Yup.string().email().required("Required"),
     password: Yup.string()
@@ -22,12 +24,15 @@ export default function Login({closeModal}) {
   .then((userCredential) => {
     const user = userCredential.user;
     console.log(user)
+    dispatch(setUserName(user.email));
+    dispatch(setIsLoggedIn(true));
     resetForm();
     closeModal();
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+    dispatch(setIsLoggedIn(true));
     console.log(errorCode,errorMessage)
   }).finally(()=>{
     setSubmitting(false);
@@ -84,7 +89,7 @@ export default function Login({closeModal}) {
               className="errorMessages"
             ></ErrorMessage>
           </div>
-         <button type="submit" className="text-white mt-4" disabled={isSubmitting}>
+              <button type="submit" className="text-white mt-4" disabled={isSubmitting}>
                 {isSubmitting ? "Logging..." : "Log in"}
               </button>
           </div>

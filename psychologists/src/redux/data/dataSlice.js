@@ -7,6 +7,8 @@ const initialState = {
     filters:{},
     psychologist:{},
     favorites:[],
+    loggedInUser:"",
+    isLoggedIn:false,
     loading:false
 }
 
@@ -14,6 +16,12 @@ export const psychologistSlice = createSlice({
     initialState,
     name:initialState.name,
     reducers:{
+        setIsLoggedIn: (state,action) =>{
+            state.isLoggedIn=action.payload;
+        },
+        setUserName: (state,action) =>{
+            state.loggedInUser = action.payload;
+        },
         setFilters:(state,action)=>{
             state.filters = {...state.filters, ...action.payload}
         },
@@ -48,4 +56,4 @@ export const psychologistSlice = createSlice({
 })
 
 export default psychologistSlice.reducer;
-export const { setFilters, setFavorites } = psychologistSlice.actions;
+export const { setFilters, setFavorites, setIsLoggedIn, setUserName } = psychologistSlice.actions;
