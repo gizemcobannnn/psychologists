@@ -4,10 +4,9 @@ import { fetchPsychologists } from "../redux/data/dataOps";
 import { useDispatch, useSelector } from "react-redux";
 import { setFavorites } from "../redux/data/dataSlice";
 import Appointment from "../components/Appointment/Appointment";
-
+import Filter from "../components/Filter/Filter";
 
 export default function PsychologistPage() {
-  const [selectedFilter, setSelectedFilter] = useState("Show All");
   const [visibleItems, setVisibleItems] = useState(5);
   const [expandedItems, setExpandedItems] = useState([]);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
@@ -67,38 +66,7 @@ export default function PsychologistPage() {
   return (
     <>
     <div className="flex flex-col gap-5 w-screen">
-      <div className="flex flex-col gap-3 mb-5 items-start">
-        <p>Filters</p>
-        <select
-          name="sortOptions"
-          id="sortOptions"
-          value={selectedFilter}
-          onChange={(e) => setSelectedFilter(e.target.value)}
-          className="bg-[#54BE96] text-white p-2 rounded-lg"
-        >
-          <option value="A to Z" className="bg-white text-gray-600">
-            A to Z
-          </option>
-          <option value="Z to A" className="bg-white text-gray-600">
-            Z to A
-          </option>
-          <option value="Less than $10" className="bg-white text-gray-600">
-            Less than $10
-          </option>
-          <option value="Greater than $10" className="bg-white text-gray-600">
-            Greater than $10
-          </option>
-          <option value="Popular" className="bg-white text-gray-600">
-            Popular
-          </option>
-          <option value="Not Popular" className="bg-white text-gray-600">
-            Not Popular
-          </option>
-          <option value="Show All" className="bg-white text-gray-600">
-            Show All
-          </option>
-        </select>
-      </div>
+      <Filter/>
       <div id="psyc karts" className="flex flex-col bg-[#FBFBFB]">
         <ul>
           {psychologists.slice(0, visibleItems).map((item, index) => (
