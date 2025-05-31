@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
+
 #root {
   width: 100%;
   background-color: #ffffff;
   font-family: 'Inter', sans-serif;
-  padding: 2rem;
+  padding: 0 2rem;
 }
 
 .authForm{
