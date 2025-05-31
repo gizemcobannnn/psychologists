@@ -46,6 +46,10 @@
   border: 1px oklch(86.9% 0.022 252.894)  solid;
 }
 
+.theme-btn{
+   background-color: var(--theme-color);
+}
+
 .fields{
   display: flex;
   flex-direction: column;

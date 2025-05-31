@@ -13,7 +13,14 @@ export default function Header() {
     const loggedInUser = useSelector(state=>state.psychologists.loggedInUser);
     const isLoggedIn= useSelector(state=>state.psychologists.isLoggedIn);
     const isLoggedOut = useSelector(state=>state.psychologists.isLoggedOut);
-    console.log(loggedInUser)
+    const [selectedColor, setSelectedColor]=useState("--color-orange")
+
+      const changeTheme=(color)=>{
+      document.documentElement.style.setProperty('--theme-color',color);
+      setSelectedColor(color);
+      console.log(selectedColor)
+    }
+    
     useEffect(() => {
         const handleEscape = (e) => {
             if (e.key === "Escape") {
@@ -29,6 +36,7 @@ export default function Header() {
                 document.body.style.overflow = 'hidden';
             }
         }
+
 
         return () => {
             document.removeEventListener("keydown", handleEscape);
@@ -86,6 +94,11 @@ export default function Header() {
             </button>
             )}
 
+          </div>
+          <div className='flex flex-row gap-1'>
+            <div className='bg-[#FC832C] h-3 w-3 rounded-lg cursor-pointer' onClick={()=>changeTheme("--color-orange")}></div>
+            <div className='bg-[#3470FF] h-3 w-3 rounded-lg cursor-pointer' onClick={()=>changeTheme("--color-blue")}></div>
+            <div className='bg-[#54BE96] h-3 w-3 rounded-lg cursor-pointer' onClick={()=>changeTheme("--color-green")}></div>
           </div>
         </header>
         {isRegModelOpen && (

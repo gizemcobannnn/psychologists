@@ -19,7 +19,7 @@ export default function HomePage() {
             <img src={mainPhoto} alt="main photo"  className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
             <img src={questionmark} alt="questionmark" className="w-8 h-8 p-2 absolute top-50 -left-5 bg-[#54BE96] rounded-lg rotate-[-15deg]" />
             <img src={users} alt="users" className="w-8 h-8 p-1 absolute top-0 -right-4 bg-amber-300 rounded-lg text-purple-700 rotate-[15deg]" />
-            <div className='flex justify-center items-center flex-row p-3 gap-3 bg-green-800 absolute bottom-2 -left-20 rounded-xl'>
+            <div className='flex justify-center items-center flex-row p-3 gap-3 bg-amber-300 absolute bottom-2 -left-20 rounded-xl'>
               <div className='bg-white w-10 h-10 flex justify-center items-center rounded-xl'>
                 <MdDone className='text-pink-500 text-3xl' />
               </div>
