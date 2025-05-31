@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useMemo } from "react";
-
+import { FaStar } from "react-icons/fa";
 export default function Psychologists({psychologists}) {
   const [visibleItems, setVisibleItems] = useState(5);
   const [expandedItems, setExpandedItems] = useState([]);
@@ -27,12 +27,12 @@ export default function Psychologists({psychologists}) {
       dispatch(setFavorites(name));
     };
     useEffect(() => {
-  const interval = setInterval(() => {
-    setSelectedFilter(JSON.parse(localStorage.getItem("selectedFilter")));
-  }, 500); // 500ms de bir kontrol et
+      const interval = setInterval(() => {
+        setSelectedFilter(JSON.parse(localStorage.getItem("selectedFilter")));
+      }, 500); // 500ms de bir kontrol et
 
-  return () => clearInterval(interval);
-}, []);
+      return () => clearInterval(interval);
+    }, []);
   
     const toggleExpand = (index) => {
       setExpandedItems((prevExpanded) =>
@@ -85,6 +85,7 @@ const filteredPsychologists = useMemo(() => {
                     </p>
                   </div>
                   <div className="flex flex-row gap-2">
+                    <FaStar className="text-xl" style={{color:"#facc15" }} />
                     <p className="text-black font-semibold">
                       Rating: {item.rating}{" "}
                     </p>
@@ -162,7 +163,10 @@ const filteredPsychologists = useMemo(() => {
                                 <p className="text-black font-medium">
                                   {it.reviewer}
                                 </p>
-                                <p>{it.rating}</p>
+                                <div className="flex flex-row gap-2">
+                                  <FaStar className="text-xl" style={{color:"#facc15" }} />
+                                  <p>{it.rating}</p>
+                                </div>
                               </div>
                             </div>
                             <p className="text-gray-600">{it.comment}</p>
