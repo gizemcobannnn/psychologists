@@ -1,15 +1,15 @@
-import { createPortal } from "react-dom"
-import { Field, Formik ,Form, ErrorMessage} from "formik"
+import { createPortal } from "react-dom";
+import { Field, Formik, Form, ErrorMessage } from "formik";
 import { useId, useState } from "react";
 import { BiX } from "react-icons/bi";
-import * as Yup from "yup"
-export default function Appointment({closeModal,psychologist}) {
+import * as Yup from "yup";
+export default function Appointment({ closeModal, psychologist }) {
   const commentId = useId();
   const emailId = useId();
   const clockId = useId();
   const phoneId = useId();
   const nameId = useId();
-  const [isSubmitted,setIsSubmitted]=useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const handleSubmit = (values, actions) => {
     console.log(values);
     setIsSubmitted(true);
@@ -22,36 +22,47 @@ export default function Appointment({closeModal,psychologist}) {
 
   const validateForm = Yup.object().shape({
     name: Yup.string()
-    .min(5, "Name must be at least 5 characters")
-    .max(20, "Name must be at most 20 characters")
-    .required("Name is required"),
-    phone: Yup.string()
-    .min(9).max(12),
+      .min(5, "Name must be at least 5 characters")
+      .max(20, "Name must be at most 20 characters")
+      .required("Name is required"),
+    phone: Yup.string().min(9).max(12),
     email: Yup.string()
-     .email("Invalid email format")
-    .required("Email is required"),
+      .email("Invalid email format")
+      .required("Email is required"),
     clock: Yup.string()
-    .matches(/^([0-1]\d|2[0-3]):([0-5]\d)$/, "Invalid time format (HH:MM)")
-    .required("Clock is required"),
-    comment: Yup.string().min(0)
-    .max(256, "Comment can be at most 256 characters")
-    .notRequired(),
-  })
+      .matches(/^([0-1]\d|2[0-3]):([0-5]\d)$/, "Invalid time format (HH:MM)")
+      .required("Clock is required"),
+    comment: Yup.string()
+      .min(0)
+      .max(256, "Comment can be at most 256 characters")
+      .notRequired(),
+  });
 
   return createPortal(
     <div className="fixed z-50 flex justify-center items-center inset-0 bg-black/70 backdrop-blur-sm">
       <div className="flex flex-col items-start justify-center bg-white p-10 w-[300px] md:w-[500px]">
         <div className="text flex flex-col gap-3">
           <div className="flex flex-row justify-between ">
-            <h2 className="text-3xl">Make an appointment with a psychologist</h2>
+            <h2 className="text-3xl">
+              Make an appointment with a psychologist
+            </h2>
             <button className="exit" onClick={closeModal}>
-              <BiX className="text-3xl"/>
+              <BiX className="text-3xl" />
             </button>
           </div>
-          <p className="text-gray-600">You are on the verge of changing your life for the better. Fill out the short form below to book your personal appointment with a professional psychologist. We guarantee confidentiality and respect for your privacy.</p>
+          <p className="text-gray-600">
+            You are on the verge of changing your life for the better. Fill out
+            the short form below to book your personal appointment with a
+            professional psychologist. We guarantee confidentiality and respect
+            for your privacy.
+          </p>
         </div>
         <div className="flex flex-row gap-2 mt-4">
-          <img src={psychologist.avatar_url} alt={psychologist.avatar_url} className="w-20 h-20 rounded-sm" />
+          <img
+            src={psychologist.avatar_url}
+            alt={psychologist.avatar_url}
+            className="w-20 h-20 rounded-sm"
+          />
           <div>
             <p className="text-gray-600 text-[14px]">Your psychologist</p>
             <p>{psychologist.name}</p>
@@ -72,7 +83,7 @@ export default function Appointment({closeModal,psychologist}) {
             {({ isSubmitting }) => (
               <Form className="w-full">
                 <div className="flex flex-col gap-5 mt-4">
-                  <div className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-2">
                     <Field
                       type="text"
                       name="name"
@@ -83,28 +94,28 @@ export default function Appointment({closeModal,psychologist}) {
                     <ErrorMessage name="name" />
                   </div>
                   <div className="flex flex-row w-full gap-3">
-                    <Field
-                      placeholder="Phone"
-                      name="phone"
-                      id={phoneId}
-                      type="tel"
-                      className="formInputs"
-                    />
-                    <ErrorMessage 
-                      name="phone" 
-                    />
-                    <Field
-                      placeholder="00:00"
-                      name="clock"
-                      id={clockId}
-                      type="time"
-                      className="formInputs"
-                    />
-                    <ErrorMessage 
-                      name="clock"
-                    />
+                    <div className="flex flex-col gap-2">
+                      <Field
+                        placeholder="Phone"
+                        name="phone"
+                        id={phoneId}
+                        type="tel"
+                        className="formInputs"
+                      />
+                      <ErrorMessage name="phone" className="errorMessages" />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <Field
+                        placeholder="00:00"
+                        name="clock"
+                        id={clockId}
+                        type="time"
+                        className="formInputs"
+                      />
+                      <ErrorMessage name="clock" className="errorMessages" />
+                    </div>
                   </div>
-                  <div>
+                  <div className="flex flex-col gap-2">
                     <Field
                       placeholder="Email"
                       name="email"
@@ -112,11 +123,7 @@ export default function Appointment({closeModal,psychologist}) {
                       type="email"
                       className="formInputs"
                     />
-                    <ErrorMessage 
-                      name="email"
-                      className="formInputs"
- 
-                    />
+                    <ErrorMessage name="email" className="errorMessages" />
                   </div>
                   <div>
                     <Field
@@ -127,18 +134,21 @@ export default function Appointment({closeModal,psychologist}) {
                       className="formInputs"
                     />
                   </div>
-                  <button className="bg-primary">
+                  <button className="bg-primary" disabled={isSubmitting}>
                     {isSubmitting ? "Submitting..." : "Send"}
                   </button>
-              {isSubmitted && (
-                <p className="text-primary ml-2 text-sm">Your appointment has been created successfully!</p>
-              )}
-              </div>
+                  {isSubmitted && (
+                    <p className="text-primary ml-2 text-sm">
+                      Your appointment has been created successfully!
+                    </p>
+                  )}
+                </div>
               </Form>
             )}
           </Formik>
         </div>
       </div>
-    </div>, document.body
+    </div>,
+    document.body
   );
 }
