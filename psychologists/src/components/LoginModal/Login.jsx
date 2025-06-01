@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
 import app from '../../firebaseConfig';
+import { BiX } from "react-icons/bi";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {createPortal} from "react-dom";
 import { useDispatch } from "react-redux";
@@ -52,7 +53,9 @@ export default function Login({closeModal}) {
           <div className="textForm flex flex-col gap-6 mb-4">
             <div className="flex flex-row justify-between w-full">
                <h1 className="text-4xl">Log In</h1>
-               <button onClick={closeModal} className="text-primary text-xl flex">X</button>
+               <button onClick={closeModal} className="text-primary text-xl flex">
+                <BiX className="text-3xl" />
+               </button>
             </div>
            
             <p className="text-[#191A1580] opacity-70">
@@ -89,7 +92,7 @@ export default function Login({closeModal}) {
               className="errorMessages"
             ></ErrorMessage>
           </div>
-              <button type="submit" className="text-white mt-4" disabled={isSubmitting}>
+              <button type="submit" className="text-white bg-primary mt-4" disabled={isSubmitting}>
                 {isSubmitting ? "Logging..." : "Log in"}
               </button>
           </div>

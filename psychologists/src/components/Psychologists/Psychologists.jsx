@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useMemo } from "react";
 import { FaStar } from "react-icons/fa";
+import Appointment from "../Appointment/Appointment";
 export default function Psychologists({psychologists}) {
   const [visibleItems, setVisibleItems] = useState(5);
   const [expandedItems, setExpandedItems] = useState([]);
@@ -62,6 +63,7 @@ const filteredPsychologists = useMemo(() => {
 }, [psychologists, selectedFilter]);
     
   return (
+    <>
     <div id="psyc karts" className="flex flex-col bg-[#FBFBFB]">
         <ul>
           {filteredPsychologists.length>0 ? (filteredPsychologists.slice(0, visibleItems).map((item, index) => (
@@ -142,7 +144,7 @@ const filteredPsychologists = useMemo(() => {
                 </div>
                 <p className="text-gray-600 text-justify">{item.about}</p>
                 <button
-                  className="morebutton p-0"
+                  className="morebutton p-0 mt-2"
                   onClick={() => toggleExpand(index)}
                 >
                   {expandedItems.includes(index) ? "Hide" : "Read more"}
@@ -154,7 +156,7 @@ const filteredPsychologists = useMemo(() => {
                         <li key={index}>
                           <div className="flex flex-col gap-3">
                             <div className="flex flex-row gap-5 mt-3">
-                              <div className="bg-slate-200 rounded-xl border-none w-9 h-9 flex justify-center items-center">
+                              <div className="bg-slate-200 rounded-4xl p-4 border-none w-9 h-9 flex justify-center items-center">
                                 <p className="text-primary">
                                   {it.reviewer.charAt(0)}
                                 </p>
@@ -175,7 +177,7 @@ const filteredPsychologists = useMemo(() => {
                       ))}
                     </ul>
                     <button
-                      className="mt-5 w-60"
+                      className="mt-5 w-60 bg-primary"
                       onClick={() => {setIsAppointmentOpen(true); setSelectedPsychologist(item)}}
                     >
                       Make an appointment
@@ -194,5 +196,7 @@ const filteredPsychologists = useMemo(() => {
         </button>
         )}
       </div>
+      {isAppointmentOpen && <Appointment closeModal={()=>setIsAppointmentOpen(false)} psychologist={selectedPsychologist}/>}
+</>
   )
 }

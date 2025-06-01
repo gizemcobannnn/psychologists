@@ -1,18 +1,42 @@
 import { createPortal } from "react-dom"
 import { Field, Formik ,Form, ErrorMessage} from "formik"
-import { useId } from "react";
-
+import { useId, useState } from "react";
+import { BiX } from "react-icons/bi";
+import * as Yup from "yup"
 export default function Appointment({closeModal,psychologist}) {
   const commentId = useId();
   const emailId = useId();
   const clockId = useId();
   const phoneId = useId();
   const nameId = useId();
-
+  const [isSubmitted,setIsSubmitted]=useState(false);
   const handleSubmit = (values, actions) => {
-    console.log(values)
+    console.log(values);
+    setIsSubmitted(true);
     actions.setSubmitting(false);
-  }
+    actions.resetForm();
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 3000);
+  };
+
+  const validateForm = Yup.object().shape({
+    name: Yup.string()
+    .min(5, "Name must be at least 5 characters")
+    .max(20, "Name must be at most 20 characters")
+    .required("Name is required"),
+    phone: Yup.string()
+    .min(9).max(12),
+    email: Yup.string()
+     .email("Invalid email format")
+    .required("Email is required"),
+    clock: Yup.string()
+    .matches(/^([0-1]\d|2[0-3]):([0-5]\d)$/, "Invalid time format (HH:MM)")
+    .required("Clock is required"),
+    comment: Yup.string().min(0)
+    .max(256, "Comment can be at most 256 characters")
+    .notRequired(),
+  })
 
   return createPortal(
     <div className="fixed z-50 flex justify-center items-center inset-0 bg-black/70 backdrop-blur-sm">
@@ -20,7 +44,9 @@ export default function Appointment({closeModal,psychologist}) {
         <div className="text flex flex-col gap-3">
           <div className="flex flex-row justify-between ">
             <h2 className="text-3xl">Make an appointment with a psychologist</h2>
-            <button className="exit" onClick={closeModal}>X</button>
+            <button className="exit" onClick={closeModal}>
+              <BiX className="text-3xl"/>
+            </button>
           </div>
           <p className="text-gray-600">You are on the verge of changing your life for the better. Fill out the short form below to book your personal appointment with a professional psychologist. We guarantee confidentiality and respect for your privacy.</p>
         </div>
@@ -41,6 +67,7 @@ export default function Appointment({closeModal,psychologist}) {
               comment: "",
             }}
             onSubmit={handleSubmit}
+            validationSchema={validateForm}
           >
             {({ isSubmitting }) => (
               <Form className="w-full">
@@ -63,12 +90,18 @@ export default function Appointment({closeModal,psychologist}) {
                       type="tel"
                       className="formInputs"
                     />
+                    <ErrorMessage 
+                      name="phone" 
+                    />
                     <Field
                       placeholder="00:00"
                       name="clock"
                       id={clockId}
                       type="time"
                       className="formInputs"
+                    />
+                    <ErrorMessage 
+                      name="clock"
                     />
                   </div>
                   <div>
@@ -78,6 +111,11 @@ export default function Appointment({closeModal,psychologist}) {
                       id={emailId}
                       type="email"
                       className="formInputs"
+                    />
+                    <ErrorMessage 
+                      name="email"
+                      className="formInputs"
+ 
                     />
                   </div>
                   <div>
@@ -90,9 +128,12 @@ export default function Appointment({closeModal,psychologist}) {
                     />
                   </div>
                   <button className="bg-primary">
-                    {isSubmitting ? "Submitting..." : "Submit"}
+                    {isSubmitting ? "Submitting..." : "Send"}
                   </button>
-                </div>
+              {isSubmitted && (
+                <p className="text-primary ml-2 text-sm">Your appointment has been created successfully!</p>
+              )}
+              </div>
               </Form>
             )}
           </Formik>

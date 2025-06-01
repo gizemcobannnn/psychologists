@@ -1,6 +1,7 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import {  useId } from "react";
 import * as Yup from "yup";
+import { BiX } from "react-icons/bi";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app from '../../firebaseConfig';
 import {createPortal} from 'react-dom'
@@ -60,7 +61,9 @@ export default function Register({closeModal}) {
             <div className="textForm mb-4 flex flex-row ">
               <div className="flex flex-row gap-6 justify-between w-full">
                 <h1 className="text-4xl">Registration</h1>
-                <button className="flex text-primary text-xl" onClick={closeModal} >X</button>
+                <button className="flex text-primary text-xl" onClick={closeModal} >
+                  <BiX  className="text-3xl"/>
+                </button>
               </div>
               <p className="text-[#191A1580] opacity-70">
                 Thank you for your interest in our platform! Please provide us
@@ -116,7 +119,7 @@ export default function Register({closeModal}) {
 
               <button
                 type="submit"
-                className="text-white mt-4"
+                className="text-white bg-primary mt-4"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Registering..." : "Sign Up"}
