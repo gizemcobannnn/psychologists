@@ -97,14 +97,14 @@ const filteredPsychologists = useMemo(() => {
                     </p>
                     {favoritePsychologists.includes(item.name) ? (
                       <MdFavorite
-                        className="text-2xl text-amber-300"
+                        className="text-2xl text-primary"
                         onClick={() => {
                           handleFavorite(item.name);
                         }}
                       ></MdFavorite>
                     ) : (
                       <MdFavoriteBorder
-                        className="text-2xl text-gray-800"
+                        className="text-2xl text-primary"
                         onClick={() => {
                           handleFavorite(item.name);
                         }}
@@ -154,8 +154,8 @@ const filteredPsychologists = useMemo(() => {
                         <li key={index}>
                           <div className="flex flex-col gap-3">
                             <div className="flex flex-row gap-5 mt-3">
-                              <div className="bg-green-200 rounded-xl border-none w-9 h-9 flex justify-center items-center">
-                                <p className="text-green-600">
+                              <div className="bg-slate-200 rounded-xl border-none w-9 h-9 flex justify-center items-center">
+                                <p className="text-primary">
                                   {it.reviewer.charAt(0)}
                                 </p>
                               </div>
@@ -189,7 +189,7 @@ const filteredPsychologists = useMemo(() => {
             }
         </ul>
         {filteredPsychologists.length > visibleItems && (
-        <button className="w-30 text-white self-center mt-3" onClick={loadMore}>
+        <button className="w-30 text-white bg-primary flex items-center self-center mt-3 mb-3" onClick={loadMore}>
           Load More
         </button>
         )}

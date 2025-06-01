@@ -38,7 +38,7 @@ export default function Logout({closeModal}) {
                 <button type="submit">
                   {isSubmitting ? "Logging out" : "Log out"}
                 </button>
-                <button type="button" className="authbtn" onClick={closeModal}>
+                <button type="button" className="authbtn text-primary text-xl flex" onClick={closeModal}>
                   Cancel
                 </button>
               </div>

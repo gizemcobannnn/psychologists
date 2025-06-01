@@ -52,7 +52,7 @@ export default function Login({closeModal}) {
           <div className="textForm flex flex-col gap-6 mb-4">
             <div className="flex flex-row justify-between w-full">
                <h1 className="text-4xl">Log In</h1>
-               <button onClick={closeModal} className="flex">X</button>
+               <button onClick={closeModal} className="text-primary text-xl flex">X</button>
             </div>
            
             <p className="text-[#191A1580] opacity-70">

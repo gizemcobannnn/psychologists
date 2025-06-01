@@ -89,7 +89,7 @@ export default function Appointment({closeModal,psychologist}) {
                       className="formInputs"
                     />
                   </div>
-                  <button>
+                  <button className="bg-primary">
                     {isSubmitting ? "Submitting..." : "Submit"}
                   </button>
                 </div>

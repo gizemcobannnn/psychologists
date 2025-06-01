@@ -60,7 +60,7 @@ export default function Register({closeModal}) {
             <div className="textForm mb-4 flex flex-row ">
               <div className="flex flex-row gap-6 justify-between w-full">
                 <h1 className="text-4xl">Registration</h1>
-                <button className="flex" onClick={closeModal} >X</button>
+                <button className="flex text-primary text-xl" onClick={closeModal} >X</button>
               </div>
               <p className="text-[#191A1580] opacity-70">
                 Thank you for your interest in our platform! Please provide us

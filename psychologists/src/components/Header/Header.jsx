@@ -15,11 +15,21 @@ export default function Header() {
     const isLoggedOut = useSelector(state=>state.psychologists.isLoggedOut);
     const [selectedColor, setSelectedColor]=useState("--color-orange")
 
-      const changeTheme=(color)=>{
-      document.documentElement.style.setProperty('--theme-color',color);
-      setSelectedColor(color);
-      console.log(selectedColor)
-    }
+  const changeTheme = (color) => {
+    document.documentElement.style.setProperty('--primary-color', color);
+    document.documentElement.style.setProperty('--text-primary', color);
+    localStorage.setItem("primary-color", JSON.stringify(color));
+    setSelectedColor(color);
+    console.log(selectedColor)
+  };
+
+  useEffect(() => {
+    const color = JSON.parse(localStorage.getItem("primary-color")) || "#FC832C";
+    document.documentElement.style.setProperty('--primary-color', color);
+    document.documentElement.style.setProperty('--text-primary', color);
+    setSelectedColor(color);
+  }, []);
+
     
     useEffect(() => {
         const handleEscape = (e) => {
@@ -50,7 +60,7 @@ export default function Header() {
       <>
         <header className="flex flex-row justify-between items-center p-5 border-b border-slate-300 bg-[#FBFBFB]">
           <div>
-            <span className="text-green-600">psychologists.</span>services
+            <span className="text-primary">psychologists.</span>services
           </div>
           <nav className="flex flex-row gap-6">
             <NavLink to="/" className="text-black">
@@ -66,7 +76,7 @@ export default function Header() {
           <div className="flex flex-row gap-6 items-center">
             <div className="flex flex-row gap-2 items-center">
               {!isLoggedOut && (<>
-                <IoPersonSharp className="text-2xl bg-green-600 text-white p-1 rounded-lg w-7 h-7" />
+                <IoPersonSharp className="text-2xl bg-primary text-white p-1 rounded-lg w-7 h-7" />
                 <p className="text-black">{loggedInUser}</p>
               </>)}
             </div>
@@ -96,9 +106,9 @@ export default function Header() {
 
           </div>
           <div className='flex flex-row gap-1'>
-            <div className='bg-[#FC832C] h-3 w-3 rounded-lg cursor-pointer' onClick={()=>changeTheme("--color-orange")}></div>
-            <div className='bg-[#3470FF] h-3 w-3 rounded-lg cursor-pointer' onClick={()=>changeTheme("--color-blue")}></div>
-            <div className='bg-[#54BE96] h-3 w-3 rounded-lg cursor-pointer' onClick={()=>changeTheme("--color-green")}></div>
+            <div className='bg-[#FC832C] h-3 w-3 rounded-lg cursor-pointer' onClick={()=>changeTheme("#FC832C")}></div>
+            <div className='bg-[#3470FF] h-3 w-3 rounded-lg cursor-pointer' onClick={()=>changeTheme("#3470FF")}></div>
+            <div className='bg-[#54BE96] h-3 w-3 rounded-lg cursor-pointer' onClick={()=>changeTheme("#54BE96")}></div>
           </div>
         </header>
         {isRegModelOpen && (

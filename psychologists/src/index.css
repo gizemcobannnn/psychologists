@@ -8,9 +8,12 @@
   --color-orange: #FC832C;
   --color-blue: #3470FF;
   --color-green: #54BE96;
+  --color-white: #ffff;
+  --primary-color: #FC832C;
+  --text-primary:#ffff;
   --font-sans: 'Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-body: 'Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    
+
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,9 +21,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.bg-primary {
+  background-color: var(--primary-color);
+}
+.text-primary {
+  color: var(--text-primary);
+}
 
 a:hover {
-  color: orange;
+  color: var(--primary-color);
 }
 
 body {
@@ -33,7 +42,6 @@ body {
 button{
   border-radius: 30px;
   padding: 0.6em 1.2em;
-  font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: var(--theme-color);

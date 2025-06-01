@@ -14,7 +14,7 @@ export default function Filter(){
             localStorage.setItem("selectedFilter", JSON.stringify(e.target.value));
             console.log(JSON.parse(localStorage.getItem("selectedFilter")))
             }}
-          className="bg-[#54BE96] text-white p-2 rounded-lg"
+          className="bg-primary text-white p-2 rounded-lg"
         >
           <option value="A to Z" className="bg-white text-gray-600">
             A to Z
