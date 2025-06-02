@@ -5,6 +5,8 @@ import Register from '../RegisterModal/Register';
 import Login from '../LoginModal/Login';
 import Logout from '../Logout/Logout';
 import { useSelector } from 'react-redux';
+import { IoMenu, IoClose } from "react-icons/io5";
+
 
 export default function Header() {
     const [isRegModelOpen, setIsRegModelOpen] = useState(false);
@@ -14,6 +16,7 @@ export default function Header() {
     const isLoggedIn= useSelector(state=>state.psychologists.isLoggedIn);
     const isLoggedOut = useSelector(state=>state.psychologists.isLoggedOut);
     const [selectedColor, setSelectedColor]=useState("--color-orange")
+    const [isMenuOpen, setIsMenuOpen]=useState(false);
 
   const changeTheme = (color) => {
     document.documentElement.style.setProperty('--primary-color', color);
@@ -58,11 +61,11 @@ export default function Header() {
 
     return (
       <>
-        <header className="flex flex-row justify-between items-center p-5 border-b border-slate-300 bg-[#FBFBFB]">
+        <header className="flex flex-row justify-between items-center min-w-[570px] pr-5 border-b border-slate-300 bg-[#FBFBFB]">
           <div>
             <span className="text-primary">psychologists.</span>services
           </div>
-          <nav className="flex flex-row gap-6">
+          <nav className="hidden md:flex md:flex-row md:gap-6">
             <NavLink to="/" className="text-black">
               Home
             </NavLink>
@@ -73,7 +76,31 @@ export default function Header() {
               Favorites
             </NavLink>
           </nav>
-          <div className="flex flex-row gap-6 items-center">
+
+          <button className='text-2xl md:hidden' onClick={()=>setIsMenuOpen(true)}>
+            <IoMenu />
+          </button>
+
+          {/** Side menu */}
+      <div
+        className={`fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 p-5 transform ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        } transition-transform duration-300 ease-in-out`}
+      >
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-bold text-green-600">Menu</h2>
+          <button onClick={() => setIsMenuOpen(false)} className="text-2xl">
+            <IoClose />
+          </button>
+        </div>
+        <nav className="flex flex-col gap-4">
+          <a href="/" onClick={() => setIsMenuOpen(false)}>Home</a>
+          <a href="/psychologists" onClick={() => setIsMenuOpen(false)}>Psychologists</a>
+          <a href="/favorites" onClick={() => setIsMenuOpen(false)}>Favorites</a>
+        </nav>
+      </div>
+
+          <div className="hidden md:flex flex-row gap-6 items-center">
             <div className="flex flex-row gap-2 items-center">
               {!isLoggedOut && (<>
                 <IoPersonSharp className="text-2xl bg-primary text-white p-1 rounded-lg w-7 h-7" />

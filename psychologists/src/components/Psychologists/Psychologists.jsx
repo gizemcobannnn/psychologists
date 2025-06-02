@@ -78,7 +78,7 @@ const filteredPsychologists = useMemo(() => {
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col pr-5">
                 <div className="flex flex-row justify-between gap-20">
                   <div className="flex flex-col items-start">
                     <p className="text-slate-500 text-sm">Psychologist</p>
