@@ -49,7 +49,7 @@ export default function PsychologistPage() {
 
   return (
     <>
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 w-full">
       <Filter></Filter>
       <Psychologists psychologists={psychologists}></Psychologists>
     </div>

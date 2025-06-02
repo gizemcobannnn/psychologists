@@ -64,14 +64,14 @@ const filteredPsychologists = useMemo(() => {
     
   return (
     <>
-    <div id="psyc karts" className="flex flex-col bg-[#FBFBFB]">
-        <ul>
+    <div id="psyc karts" className="flex flex-col w-full bg-[#FBFBFB]">
+        <ul className="w-full flex flex-col">
           {filteredPsychologists.length>0 ? (filteredPsychologists.slice(0, visibleItems).map((item, index) => (
             <li
               key={index}
               className="flex flex-row gap-8 p-5 border-b border-slate-300"
             >
-              <div className="flex flex-col w-[400px] border border-slate-400 rounded-lg p-3 h-min">
+              <div className="flex flex-col min-w-[150px] md:w-[400px] border border-slate-400 rounded-lg p-3 h-min">
                 <img
                   src={item.avatar_url}
                   alt="avatar"
@@ -86,20 +86,24 @@ const filteredPsychologists = useMemo(() => {
                       {item.name}
                     </p>
                   </div>
-                  <div className="flex flex-row gap-2">
-                    <FaStar className="text-xl" style={{color:"#facc15" }} />
+                  <div className="flex flex-col gap-3 md:flex-row  md:gap-2">
+                  <div className="flex flex-row gap-3  min-w-[120px]">
+                      <FaStar className="text-xl" style={{color:"#facc15" }} />
                     <p className="text-black font-semibold">
                       Rating: {item.rating}{" "}
                     </p>
+                  </div>
+                  <div className="flex flex-row min-w-[150px]">
                     <p className="text-black font-semibold">
                       Price / 1 hour:{" "}
                       <span className="text-green-500">
                         {item.price_per_hour}$
                       </span>
                     </p>
+                     </div>
                     {favoritePsychologists.includes(item.name) ? (
                       <MdFavorite
-                        className="text-2xl text-primary"
+                        className="text-2xl text-primary self-center md:self-baseline"
                         onClick={() => {
                           handleFavorite(item.name);
                         }}
@@ -112,6 +116,7 @@ const filteredPsychologists = useMemo(() => {
                         }}
                       ></MdFavoriteBorder>
                     )}
+                   
                   </div>
                 </div>
                 <div className="flex flex-row flex-wrap gap-2 mt-5 mb-5">
