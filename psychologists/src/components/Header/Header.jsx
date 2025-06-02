@@ -83,17 +83,17 @@ export default function Header() {
 
           {/** Side menu */}
       <div
-        className={`fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 p-5 transform ${
+        className={`fixed top-0 right-0 w-64 h-47 bg-white shadow-lg z-50 p-5 transform ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold text-green-600">Menu</h2>
+        <div className="flex justify-between items-center mb-2">
+          <h2 className="text-xl font-bold text-primary">Menu</h2>
           <button onClick={() => setIsMenuOpen(false)} className="text-2xl">
             <IoClose />
           </button>
         </div>
-        <nav className="flex flex-col gap-4">
+        <nav className="flex flex-col gap-3">
           <a href="/" onClick={() => setIsMenuOpen(false)}>Home</a>
           <a href="/psychologists" onClick={() => setIsMenuOpen(false)}>Psychologists</a>
           <a href="/favorites" onClick={() => setIsMenuOpen(false)}>Favorites</a>
