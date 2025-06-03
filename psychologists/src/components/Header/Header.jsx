@@ -14,7 +14,6 @@ export default function Header() {
     const [isLogoutModelOpen, setIsLogoutModelOpen] = useState(false); // Fixed capitalization
     const loggedInUser = useSelector(state=>state.psychologists.loggedInUser);
     const isLoggedIn= useSelector(state=>state.psychologists.isLoggedIn);
-    const isLoggedOut = useSelector(state=>state.psychologists.isLoggedOut);
     const [selectedColor, setSelectedColor]=useState("--color-orange")
     const [isMenuOpen, setIsMenuOpen]=useState(false);
 
@@ -102,7 +101,7 @@ export default function Header() {
 
           <div className="hidden md:flex flex-row gap-6 items-center">
             <div className="flex flex-row gap-2 items-center">
-              {!isLoggedOut && (<>
+              {isLoggedIn && loggedInUser &&(<>
                 <IoPersonSharp className="text-2xl bg-primary text-white p-1 rounded-lg w-7 h-7" />
                 <p className="text-black">{loggedInUser}</p>
               </>)}
