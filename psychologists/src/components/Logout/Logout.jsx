@@ -35,7 +35,7 @@ export default function Logout({closeModal}) {
                 <p className="text-center mb-2 font-semibold">Are you sure ?</p>
               </div>
               <div className="flex flex-row gap-5">
-                <button type="submit">
+                <button type="submit" className="text-primary text-xl">
                   {isSubmitting ? "Logging out" : "Log out"}
                 </button>
                 <button type="button" className="authbtn text-primary text-xl flex" onClick={closeModal}>

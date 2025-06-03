@@ -6,7 +6,7 @@ import { configureStore } from '@reduxjs/toolkit';
 const psychologistsPersistConfig ={
     key:"psychologists",
     storage,
-    whitelist:["psychologists","filters","favorites","psychologist"],
+    whitelist:["psychologists","filters","favorites","psychologist","isLoggedIn"],
     version:1
 }
 const persistedPsychologistsReducer = persistReducer(psychologistsPersistConfig, psychologistSlice.reducer);

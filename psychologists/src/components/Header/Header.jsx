@@ -61,7 +61,7 @@ export default function Header() {
 
     return (
       <>
-        <header className="flex flex-row justify-between items-center min-w-[570px] pr-5 border-b border-slate-300 bg-[#FBFBFB]">
+        <header className="flex flex-row justify-between items-center min-w-[570px] pr-5 pt-2 pb-2 border-b border-slate-300 bg-[#FBFBFB]">
           <div>
             <span className="text-primary">psychologists.</span>services
           </div>
@@ -77,26 +77,26 @@ export default function Header() {
             </NavLink>
           </nav>
 
-          <button className='text-2xl md:hidden' onClick={()=>setIsMenuOpen(true)}>
+          <button className='text-2xl text-primary md:hidden' onClick={()=>setIsMenuOpen(true)}>
             <IoMenu />
           </button>
 
           {/** Side menu */}
       <div
-        className={`fixed top-0 right-0 w-64 h-47 bg-white shadow-lg z-50 p-5 transform ${
+        className={`fixed top-0 right-0 w-70 h-47 bg-white shadow-lg z-50 p-5 transform ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
         <div className="flex justify-between items-center mb-2">
           <h2 className="text-xl font-bold text-primary">Menu</h2>
-          <button onClick={() => setIsMenuOpen(false)} className="text-2xl">
+          <button onClick={() => setIsMenuOpen(false)} className="text-primary text-2xl">
             <IoClose />
           </button>
         </div>
         <nav className="flex flex-col gap-3">
-          <a href="/" onClick={() => setIsMenuOpen(false)}>Home</a>
-          <a href="/psychologists" onClick={() => setIsMenuOpen(false)}>Psychologists</a>
-          <a href="/favorites" onClick={() => setIsMenuOpen(false)}>Favorites</a>
+          <NavLink to="/" onClick={() => setIsMenuOpen(false)}>Home</NavLink>
+          <NavLink to="/psychologists" onClick={() => setIsMenuOpen(false)}>Psychologists</NavLink>
+          <NavLink to="/favorites" onClick={() => setIsMenuOpen(false)}>Favorites</NavLink>
         </nav>
       </div>
 
@@ -122,7 +122,7 @@ export default function Header() {
                 </button>
             )}
 
-            {isLoggedIn && !isLoggedOut && (
+            {isLoggedIn  && (
             <button
               className="authbtn"
               onClick={() => setIsLogoutModelOpen(true)}
