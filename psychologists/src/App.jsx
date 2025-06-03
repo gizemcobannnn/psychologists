@@ -7,6 +7,7 @@ import ReadFirebase from './components/ReadFirebase/ReadFirebase'
 import PsychologistPage from './pages/PsychologistPage'
 import Header from './components/Header/Header'
 import Appointment from './components/Appointment/Appointment'
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       {/**<AppRoute/>   <HomePage/>    <Register></Register>    <Login></Login> */}
       {/** <ReadFirebase></ReadFirebase> */}
       {/** <PsychologistPage></PsychologistPage> */}
+      <ToastContainer autoClose={1000} pauseOnFocusLoss theme="light" closeOnClick={true}/>
       {<Header></Header>}
       <AppRoute></AppRoute>
 

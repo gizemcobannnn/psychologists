@@ -4,6 +4,7 @@ import app from '../../firebaseConfig'
 import { Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import {setIsLoggedOut} from "../../redux/data/dataSlice"
+import {toast} from 'react-toastify';
 export default function Logout({closeModal}) {
   const dispatch = useDispatch();
   const handleLogout = async (values, actions) => {
@@ -14,10 +15,11 @@ export default function Logout({closeModal}) {
       console.log("Logout successful");
       closeModal(); // Close the modal after logout
       dispatch(setIsLoggedOut(true));
+      toast("Logged out...")
     } catch (error) {
       console.log(error);
       dispatch(setIsLoggedOut(false));
-
+      toast(error.message);
     } finally {
       actions.setSubmitting(false);
       dispatch(setIsLoggedOut(true));

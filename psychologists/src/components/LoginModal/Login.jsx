@@ -7,6 +7,8 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {createPortal} from "react-dom";
 import { useDispatch } from "react-redux";
 import { setUserName , setIsLoggedIn} from "../../redux/data/dataSlice";
+import { toast } from 'react-toastify';
+
 export default function Login({closeModal}) {
   const emailId = useId();
   const passwordId = useId();
@@ -27,6 +29,7 @@ export default function Login({closeModal}) {
     console.log(user)
     dispatch(setUserName(user.email));
     dispatch(setIsLoggedIn(true));
+    toast("Successful login");
     resetForm();
     closeModal();
   })
@@ -34,6 +37,7 @@ export default function Login({closeModal}) {
     const errorCode = error.code;
     const errorMessage = error.message;
     dispatch(setIsLoggedIn(false));
+    toast(error.message);
     console.log(errorCode,errorMessage)
   }).finally(()=>{
     setSubmitting(false);
