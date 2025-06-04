@@ -81,3 +81,9 @@
   text-align: start;
   color:rgb(149, 35, 35)
 }
+
+.menuButton{
+  padding: 0;
+  margin-top: 1em;
+  display: inline;
+}

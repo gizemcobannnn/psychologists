@@ -71,42 +71,82 @@ export default function Header() {
             <NavLink to="/psychologists" className="text-black">
               Psychologists
             </NavLink>
-            <NavLink to="/favorites" className="text-black">
+            {isLoggedIn && (
+              <NavLink to="/favorites" className="text-black">
               Favorites
             </NavLink>
+            )}
           </nav>
 
-          <button className='text-2xl text-primary md:hidden' onClick={()=>setIsMenuOpen(true)}>
+          <button
+            className="text-2xl text-primary md:hidden"
+            onClick={() => setIsMenuOpen(true)}
+          >
             <IoMenu />
           </button>
 
           {/** Side menu */}
-      <div
-        className={`fixed top-0 right-0 w-70 h-47 bg-white shadow-lg z-50 p-5 transform ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out`}
-      >
-        <div className="flex justify-between items-center mb-2">
-          <h2 className="text-xl font-bold text-primary">Menu</h2>
-          <button onClick={() => setIsMenuOpen(false)} className="text-primary text-2xl">
-            <IoClose />
-          </button>
-        </div>
-        <nav className="flex flex-col gap-3">
-          <NavLink to="/" onClick={() => setIsMenuOpen(false)}>Home</NavLink>
-          <NavLink to="/psychologists" onClick={() => setIsMenuOpen(false)}>Psychologists</NavLink>
-          <NavLink to="/favorites" onClick={() => setIsMenuOpen(false)}>Favorites</NavLink>
-        </nav>
-      </div>
+          <div
+            className={`fixed top-0 right-0 w-70 h-70 bg-white shadow-lg z-50 p-5 transform ${
+              isMenuOpen ? "translate-x-0" : "translate-x-full"
+            } transition-transform duration-300 ease-in-out`}
+          >
+            <div className="flex justify-between items-center mb-2">
+              <h2 className="text-xl font-bold text-primary">Menu</h2>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="text-primary text-2xl"
+              >
+                <IoClose />
+              </button>
+            </div>
+            <nav className="flex flex-col gap-3">
+              <NavLink to="/" onClick={() => setIsMenuOpen(false)}>
+                Home
+              </NavLink>
+              <NavLink to="/psychologists" onClick={() => setIsMenuOpen(false)}>
+                Psychologists
+              </NavLink>
+              <NavLink to="/favorites" onClick={() => setIsMenuOpen(false)}>
+                Favorites
+              </NavLink>
+            </nav>
+            {!isLoggedIn && (
+              <div className='flex flex-col items-start'>
+              <button
+                onClick={() => setIsLogModelOpen(true)}
+                className="text-primary menuButton"
+              >
+                Log in
+              </button>
+                            <button
+                onClick={() => setIsRegModelOpen(true)}
+                className="text-primary menuButton"
+              >
+                Sign up
+              </button>
+              </div>
+            )}
+            {isLoggedIn && (
+              <button
+                className="text-primary menuButton"
+                onClick={() => setIsLogoutModelOpen(true)}
+              >
+                Log out
+              </button>
+            )}
+          </div>
 
           <div className="hidden md:flex flex-row gap-6 items-center">
             <div className="flex flex-row gap-2 items-center">
-              {isLoggedIn && loggedInUser &&(<>
-                <IoPersonSharp className="text-2xl bg-primary text-white p-1 rounded-lg w-7 h-7" />
-                <p className="text-black">{loggedInUser}</p>
-              </>)}
+              {isLoggedIn && loggedInUser && (
+                <>
+                  <IoPersonSharp className="text-2xl bg-primary text-white p-1 rounded-lg w-7 h-7" />
+                  <p className="text-black">{loggedInUser}</p>
+                </>
+              )}
             </div>
-            {!isLoggedIn  &&  (
+            {!isLoggedIn && (
               <button
                 onClick={() => setIsLogModelOpen(true)}
                 className="authbtn"
@@ -115,26 +155,37 @@ export default function Header() {
               </button>
             )}
 
-            {!isLoggedIn &&  (
-              <button onClick={() => setIsRegModelOpen(true)} className="authbtn">
-              Sign up
-                </button>
+            {!isLoggedIn && (
+              <button
+                onClick={() => setIsRegModelOpen(true)}
+                className="authbtn"
+              >
+                Sign up
+              </button>
             )}
 
-            {isLoggedIn  && (
-            <button
-              className="authbtn"
-              onClick={() => setIsLogoutModelOpen(true)}
-            >
-              Log out
-            </button>
+            {isLoggedIn && (
+              <button
+                className="authbtn"
+                onClick={() => setIsLogoutModelOpen(true)}
+              >
+                Log out
+              </button>
             )}
-
           </div>
-          <div className='flex flex-row gap-1'>
-            <div className='bg-[#FC832C] h-3 w-3 rounded-lg cursor-pointer' onClick={()=>changeTheme("#FC832C")}></div>
-            <div className='bg-[#3470FF] h-3 w-3 rounded-lg cursor-pointer' onClick={()=>changeTheme("#3470FF")}></div>
-            <div className='bg-[#54BE96] h-3 w-3 rounded-lg cursor-pointer' onClick={()=>changeTheme("#54BE96")}></div>
+          <div className="flex flex-row gap-1">
+            <div
+              className="bg-[#FC832C] h-3 w-3 rounded-lg cursor-pointer"
+              onClick={() => changeTheme("#FC832C")}
+            ></div>
+            <div
+              className="bg-[#3470FF] h-3 w-3 rounded-lg cursor-pointer"
+              onClick={() => changeTheme("#3470FF")}
+            ></div>
+            <div
+              className="bg-[#54BE96] h-3 w-3 rounded-lg cursor-pointer"
+              onClick={() => changeTheme("#54BE96")}
+            ></div>
           </div>
         </header>
         {isRegModelOpen && (
