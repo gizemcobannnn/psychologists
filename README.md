@@ -1,5 +1,12 @@
 # psychologists
 
+🧠 Psychologists
+A psychologist consultancy web application built with React, using Firebase for authentication and data storage.
+
+📚 Firebase Documentation
+Firebase
+Firebase Docs
+
 In this project Firebase (https://firebase.google.com/) is used for authenticating and storage.
 
 Firebase documentations
@@ -14,3 +21,28 @@ Pages
     -  Home: View home page  
     -  Psychologists: View all psychologists and details  
     -  Favorites: View favorite psychologists and details
+
+
+🌐 Live Demo  
+https://vercel.com/gizemcobannnns-projects/psychologists/F7Fk8XuddZrgYF2K7qvTHWdwt7F1
+
+
+🚀 Technologies Used
+React   
+Redux Toolkit  
+Axios  
+React Router  
+Tailwind CSS  
+Vite  
+Vercel (for deployment)  
+
+
+🛠️ How to Run Locally  
+git clone https://github.com/yourusername/travel-trucks.git  
+cd travel-trucks  
+npm install  
+npm run dev  
+
+📧 Contact and Developed by  
+Gizem Genç  
+[LinkedIn](https://www.linkedin.com/in/gizem-genc/)
