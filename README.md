@@ -24,8 +24,7 @@ Pages
 
 
 🌐 Live Demo  
-https://vercel.com/gizemcobannnns-projects/psychologists/F7Fk8XuddZrgYF2K7qvTHWdwt7F1
-
+https://psychologists-app-git-main-gizemcobannnns-projects.vercel.app/
 
 🚀 Technologies Used
 React   
