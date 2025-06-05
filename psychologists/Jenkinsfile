@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                echo 'Kod indiriliyor...'
+                git branch: 'test', url: 'https://github.com/gizemcobannnn/psychologists.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Build aşaması başlatıldı.'
+                // Eğer npm projesi varsa:
+                // sh 'npm install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testler çalıştırılıyor.'
+                // Buraya test scriptin varsa ekleyebilirsin
+                // sh 'npm test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploy işlemi yapılıyor.'
+                // Burada deploy işlemleri olabilir, Netlify CLI ya da başka sistemler
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline başarıyla tamamlandı.'
+        }
+        failure {
+            echo 'Pipeline başarısız oldu.'
+        }
+    }
+}
