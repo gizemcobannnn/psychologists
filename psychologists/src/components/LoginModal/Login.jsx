@@ -8,6 +8,8 @@ import {createPortal} from "react-dom";
 import { useDispatch } from "react-redux";
 import { setUserName , setIsLoggedIn} from "../../redux/data/dataSlice";
 import { toast } from 'react-toastify';
+import { BiShow, BiHide } from "react-icons/bi";
+import { useState } from "react";
 
 export default function Login({closeModal}) {
   const emailId = useId();
@@ -20,6 +22,8 @@ export default function Login({closeModal}) {
       .max(18, "Password must be less than 18 characters.")
       .required("Required"),
   });
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleLogin = (values,{ setSubmitting,resetForm}) => {
     const {email,password}=values;
   const auth = getAuth(app);
@@ -44,64 +48,81 @@ export default function Login({closeModal}) {
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-     <div className="authForm flex flex-col items-start bg-white rounded-2xl">
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        validationSchema ={loginValidate}
-        onSubmit={handleLogin}
-      >
-        {({isSubmitting})=>(
-        <Form>
-          <div className="textForm flex flex-col gap-6 mb-4">
-            <div className="flex flex-row justify-between w-full">
-               <h1 className="text-4xl">Log In</h1>
-               <button onClick={closeModal} className="text-primary text-xl flex">
-                <BiX className="text-3xl" />
-               </button>
-            </div>
-           
-            <p className="text-[#191A1580] opacity-70">
-              Welcome back! Please enter your credentials to access your account
-              and continue your search for a psychologist.
-            </p>
-          </div>
-          <div className="form">
-            <div className="fields">
-            <Field
-              name="email"
-              placeholder="Email"
-              id={emailId}
-              type="email"
-              className="formInputs"
-            ></Field>
-            <ErrorMessage
-              name="email"
-              component="span"
-              className="errorMessages"
-            ></ErrorMessage>
-          </div>
-          <div className="fields">
-            <Field
-              name="password"
-              placeholder="Password"
-              id={passwordId}
-              type="password"
-              className="formInputs"
-            ></Field>
-            <ErrorMessage
-              name="password"
-              component="span"
-              className="errorMessages"
-            ></ErrorMessage>
-          </div>
-              <button type="submit" className="text-white bg-primary mt-4" disabled={isSubmitting}>
-                {isSubmitting ? "Logging..." : "Log in"}
-              </button>
-          </div>
-        </Form>
-        )}
-      </Formik>
-    </div>
-    </div>,document.body
+      <div className="authForm flex flex-col items-start bg-white rounded-2xl">
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          validationSchema={loginValidate}
+          onSubmit={handleLogin}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+              <div className="textForm flex flex-col gap-6 mb-4">
+                <div className="flex flex-row justify-between w-full">
+                  <h1 className="text-4xl">Log In</h1>
+                  <button
+                    type="button"
+                    onClick={closeModal}
+                    className="text-primary text-xl flex"
+                  >
+                    <BiX className="text-3xl" />
+                  </button>
+                </div>
+
+                <p className="text-[#191A1580] opacity-70">
+                  Welcome back! Please enter your credentials to access your
+                  account and continue your search for a psychologist.
+                </p>
+              </div>
+              <div className="form">
+                <div className="fields">
+                  <Field
+                    name="email"
+                    placeholder="Email"
+                    id={emailId}
+                    type="email"
+                    className="formInputs"
+                  ></Field>
+                  <ErrorMessage
+                    name="email"
+                    component="span"
+                    className="errorMessages"
+                  ></ErrorMessage>
+                </div>
+                <div className="fields relative">
+                  <Field
+                    name="password"
+                    placeholder="Password"
+                    id={passwordId}
+                    type={showPassword ? "text" : "password"}
+                    className="formInputs"
+                  ></Field>
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-5 -translate-y-1/2 text-gray-500"
+                  >
+                    {showPassword ? <BiHide className="text-black" /> : <BiShow className="text-black" />}
+                  </button>
+
+                  <ErrorMessage
+                    name="password"
+                    component="span"
+                    className="errorMessages"
+                  ></ErrorMessage>
+                </div>
+                <button
+                  type="submit"
+                  className="text-white bg-primary mt-4"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Logging..." : "Log in"}
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </div>,
+    document.body
   );
 }

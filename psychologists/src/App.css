@@ -3,9 +3,11 @@
 
 #root {
   width: 100%;
-  background-color: #ffffff;
+  background-color: #F3F3F3;
   font-family: 'Inter', sans-serif;
   padding: 0 2rem;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .authForm{

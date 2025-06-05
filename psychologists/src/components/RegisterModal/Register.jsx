@@ -8,6 +8,9 @@ import {createPortal} from 'react-dom'
 import { useDispatch } from "react-redux";
 import { setIsRegister } from "../../redux/data/dataSlice";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import { BiShow, BiHide } from "react-icons/bi";
+
 export default function Register({closeModal}) {
   const nameId = useId();
   const emailId = useId();
@@ -26,7 +29,8 @@ export default function Register({closeModal}) {
       .max(18, "Password must be less than 18 characters.")
       .required("Required field"),
   });
-
+   const [showPassword, setShowPassword] = useState(false);
+ 
   const auth = getAuth(app);
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
@@ -102,14 +106,22 @@ export default function Register({closeModal}) {
                 />
               </div>
 
-              <div className="fields">
-                <Field
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                  id={passId}
-                  className="formInputs"
-                />
+            
+                                <div className="fields relative">
+                                  <Field
+                                    name="password"
+                                    placeholder="Password"
+                                    id={passId}
+                                    type={showPassword ? "text" : "password"}
+                                    className="formInputs"
+                                  ></Field>
+                                  <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-3 top-5 -translate-y-1/2 text-gray-500"
+                                  >
+                                    {showPassword ? <BiHide className="text-black" /> : <BiShow className="text-black" />}
+                                  </button>
                 <ErrorMessage
                   name="password"
                   component="span"

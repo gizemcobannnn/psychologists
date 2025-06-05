@@ -67,14 +67,14 @@ export default function Psychologists({ psychologists }) {
 
   return (
     <>
-      <div id="psyc karts" className="flex flex-col w-full bg-[#FBFBFB]">
+      <div id="psyc karts" className="flex flex-col gap-20 w-full bg-[#F3F3F3]">
         {loading && <Fallback />}
-        <ul className="w-full flex flex-col">
+        <ul className="w-full flex flex-col gap-10">
           {filteredPsychologists.length > 0 ? (
             filteredPsychologists.slice(0, visibleItems).map((item, index) => (
               <li
                 key={index}
-                className="flex flex-row gap-8 p-5 border-b border-slate-300"
+                className="flex flex-row gap-8 p-5 rounded-3xl bg-white border-slate-300"
               >
                 <div className="flex flex-col min-w-[150px] md:w-[400px] border border-slate-400 rounded-lg p-3 h-min">
                   <img
@@ -109,7 +109,7 @@ export default function Psychologists({ psychologists }) {
                           </span>
                         </p>
                       </div>
-                      {favoritePsychologists.includes(item.name) ? (
+                      {favoritePsychologists.includes(item.name) && isLoggedIn ? (
                         <MdFavorite
                           className="text-2xl text-primary self-center md:self-baseline"
                           onClick={() => {
@@ -118,7 +118,7 @@ export default function Psychologists({ psychologists }) {
                         ></MdFavorite>
                       ) : (
                         <MdFavoriteBorder
-                          className="text-2xl text-primary"
+                          className="text-2xl text-black"
                           onClick={() => {
                             handleFavorite(item.name);
                           }}
