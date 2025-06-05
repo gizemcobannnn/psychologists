@@ -33,8 +33,8 @@ export default function Register({closeModal}) {
     const { email, password } = values;
 
     createUserWithEmailAndPassword(auth, email, password)
+      // eslint-disable-next-line no-unused-vars
       .then((userCredential) => {
-        console.log("User registered:", userCredential.user);
         dispatch(setIsRegister(true));
         resetForm();
         closeModal();

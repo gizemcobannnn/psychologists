@@ -14,6 +14,7 @@ export default function Header() {
     const [isLogoutModelOpen, setIsLogoutModelOpen] = useState(false); // Fixed capitalization
     const loggedInUser = useSelector(state=>state.psychologists.loggedInUser);
     const isLoggedIn= useSelector(state=>state.psychologists.isLoggedIn);
+    // eslint-disable-next-line no-unused-vars
     const [selectedColor, setSelectedColor]=useState("--color-orange")
     const [isMenuOpen, setIsMenuOpen]=useState(false);
 
@@ -22,7 +23,7 @@ export default function Header() {
     document.documentElement.style.setProperty('--text-primary', color);
     localStorage.setItem("primary-color", JSON.stringify(color));
     setSelectedColor(color);
-    console.log(selectedColor)
+    
   };
 
   useEffect(() => {

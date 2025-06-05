@@ -11,7 +11,6 @@ export default function Appointment({ closeModal, psychologist }) {
   const nameId = useId();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const handleSubmit = (values, actions) => {
-    console.log(values);
     setIsSubmitted(true);
     actions.setSubmitting(false);
     actions.resetForm();

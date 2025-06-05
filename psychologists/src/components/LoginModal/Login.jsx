@@ -26,7 +26,6 @@ export default function Login({closeModal}) {
   signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
-    console.log(user)
     dispatch(setUserName(user.email));
     dispatch(setIsLoggedIn(true));
     toast("Successful login");
@@ -37,9 +36,8 @@ export default function Login({closeModal}) {
     const errorCode = error.code;
     const errorMessage = error.message;
     dispatch(setIsLoggedIn(false));
-    toast(error.message);
-    console.log(errorCode,errorMessage)
-  }).finally(()=>{
+    toast(errorCode,errorMessage);
+      }).finally(()=>{
     setSubmitting(false);
   })
   };

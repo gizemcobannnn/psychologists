@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
-import { setFavorites } from "../../redux/data/dataSlice";
+import { setFavorites, setIsLoggedIn } from "../../redux/data/dataSlice";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -21,6 +21,7 @@ export default function Psychologists({ psychologists }) {
   );
 
   const loading = useSelector((state) => state.psychologists.loading);
+  const isLoggedIn = useSelector((state) => state.psychologists.isLoggedIn);
   const dispatch = useDispatch();
 
   const loadMore = () => {
@@ -192,7 +193,7 @@ export default function Psychologists({ psychologists }) {
                           </li>
                         ))}
                       </ul>
-                      <button
+                      {isLoggedIn && (<button
                         className="mt-5 w-60 bg-primary"
                         onClick={() => {
                           setIsAppointmentOpen(true);
@@ -200,7 +201,7 @@ export default function Psychologists({ psychologists }) {
                         }}
                       >
                         Make an appointment
-                      </button>
+                      </button>)}
                     </>
                   )}
                 </div>
@@ -219,7 +220,7 @@ export default function Psychologists({ psychologists }) {
           </button>
         )}
       </div>
-      {isAppointmentOpen && (
+      {isAppointmentOpen && isLoggedIn && (
         <Appointment
           closeModal={() => setIsAppointmentOpen(false)}
           psychologist={selectedPsychologist}
