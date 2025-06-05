@@ -12,12 +12,10 @@ export default function Logout({closeModal}) {
     
     try {
       await signOut(auth);
-      console.log("Logout successful");
       closeModal(); // Close the modal after logout
       dispatch(setIsLoggedOut(true));
       toast("Logged out...")
     } catch (error) {
-      console.log(error);
       dispatch(setIsLoggedOut(false));
       toast(error.message);
     } finally {

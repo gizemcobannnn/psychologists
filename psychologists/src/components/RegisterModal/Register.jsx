@@ -7,6 +7,7 @@ import app from '../../firebaseConfig';
 import {createPortal} from 'react-dom'
 import { useDispatch } from "react-redux";
 import { setIsRegister } from "../../redux/data/dataSlice";
+import { toast } from "react-toastify";
 export default function Register({closeModal}) {
   const nameId = useId();
   const emailId = useId();
@@ -29,18 +30,17 @@ export default function Register({closeModal}) {
   const auth = getAuth(app);
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    const { name, email, password } = values;
+    const { email, password } = values;
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log("User registered:", userCredential.user);
-        console.log("Name:", name);
         dispatch(setIsRegister(true));
         resetForm();
         closeModal();
       })
       .catch((error) => {
-        console.error("Registration error:", error.code, error.message);
+        toast("Registration error:", error.code, error.message);
         dispatch(setIsRegister(false));
       })
       .finally(() => {

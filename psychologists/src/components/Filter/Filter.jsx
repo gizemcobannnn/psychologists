@@ -12,7 +12,6 @@ export default function Filter(){
           value={selectedFilter}
           onChange={(e) => {setSelectedFilter(e.target.value)
             localStorage.setItem("selectedFilter", JSON.stringify(e.target.value));
-            console.log(JSON.parse(localStorage.getItem("selectedFilter")))
             }}
           className="bg-primary appearance-none  text-white p-2 rounded-lg"
         >

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Appointment from "../components/Appointment/Appointment";
 import Filter from "../components/Filter/Filter";
 import Psychologists from "../components/Psychologists/Psychologists";
+import { toast } from "react-toastify";
 export default function PsychologistPage() {
 
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
@@ -19,10 +20,9 @@ export default function PsychologistPage() {
   useEffect(() => {
     const fetchDataPsychologists = async () => {
       try {
-        const psychologistsData = await dispatch(fetchPsychologists()).unwrap();
-        console.log("Psychologists Data:", psychologistsData);
+        await dispatch(fetchPsychologists()).unwrap();
       } catch (e) {
-        console.error("Error fetching psychologists data:", e);
+        toast("Error fetching psychologists data:", e);
       }
     };
     fetchDataPsychologists();
@@ -43,8 +43,6 @@ export default function PsychologistPage() {
     document.body.style.overflow = "unset";
   };
 }, [isAppointmentOpen]);
-
-  console.log("Psychologists:", psychologists);
 
 
   return (
