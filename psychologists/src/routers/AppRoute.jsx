@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react"
 import PsychologistPage from "../pages/PsychologistPage"
 import { Routes, Route } from "react-router-dom";
+import Fallback from "../components/Fallback/Fallback";
 //<Route path="/favorites" element={<FavoritesPage/>}></Route>
 
 export default function AppRoute() {
@@ -12,7 +13,7 @@ export default function AppRoute() {
   
   return (
     <>
-        <Suspense fallback={null}>
+        <Suspense fallback={<Fallback/>}>
             <Routes>
                 <Route path="/" element={<HomePage/>}></Route>
                 <Route path='/psychologists' element={<PsychologistsPage/>}></Route>

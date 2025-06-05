@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { useMemo } from "react";
 import { FaStar } from "react-icons/fa";
 import Appointment from "../Appointment/Appointment";
+import Fallback from "../Fallback/Fallback";
 export default function Psychologists({psychologists}) {
   const [visibleItems, setVisibleItems] = useState(5);
   const [expandedItems, setExpandedItems] = useState([]);
@@ -18,7 +19,9 @@ export default function Psychologists({psychologists}) {
   const [selectedFilter, setSelectedFilter] = useState(
   JSON.parse(localStorage.getItem("selectedFilter"))
 );
-  console.log(selectedFilter)
+
+
+  const loading = useSelector((state) => state.psychologists.loading);
   const dispatch = useDispatch();
 
     const loadMore = () => {
@@ -65,6 +68,7 @@ const filteredPsychologists = useMemo(() => {
   return (
     <>
     <div id="psyc karts" className="flex flex-col w-full bg-[#FBFBFB]">
+      {loading && <Fallback />}
         <ul className="w-full flex flex-col">
           {filteredPsychologists.length>0 ? (filteredPsychologists.slice(0, visibleItems).map((item, index) => (
             <li
@@ -192,7 +196,8 @@ const filteredPsychologists = useMemo(() => {
               </div>
             </li>
           ))):
-            (<p className="text-2xl text-center">No Result</p>)
+            (<p className="text-2xl text-center">No Result</p>
+            )
             }
         </ul>
         {filteredPsychologists.length > visibleItems && (
