@@ -13,7 +13,9 @@ pipeline {
             steps {
                 echo 'Installing project dependencies...'
                 // If this is an npm project:
+                dir('psychologists'){
                 bat 'npm install'
+                }
             }
         }
 
@@ -21,7 +23,9 @@ pipeline {
             steps {
                 echo 'Starting build process...'
                 // If you have a build command, add it here:
-                bat 'npm run build'
+                dir('psychologists') {
+                    bat 'npm run build'
+                }
             }
         }
 
@@ -29,8 +33,11 @@ pipeline {
             steps {
                 echo 'Executing test scripts...'
                 // If you have test scripts:
+                dir('psychologists'){
                 bat 'npm test'
                 bat 'deploy.bat'
+                }
+                
             }
         }
 
@@ -38,7 +45,9 @@ pipeline {
             steps {
                 echo 'Starting deployment process...'
                 // Add your deployment commands here (e.g., Netlify CLI, FTP upload, Docker deployment, etc.)
+                dir('psychologists'){
                 bat 'npm run dev '
+                }
             }
         }
     }
