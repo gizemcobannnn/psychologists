@@ -8,6 +8,7 @@ import { useMemo } from "react";
 import { FaStar } from "react-icons/fa";
 import Appointment from "../Appointment/Appointment";
 import Fallback from "../Fallback/Fallback";
+import { toast } from "react-toastify";
 export default function Psychologists({ psychologists }) {
   const [visibleItems, setVisibleItems] = useState(5);
   const [expandedItems, setExpandedItems] = useState([]);
@@ -120,6 +121,10 @@ export default function Psychologists({ psychologists }) {
                         <MdFavoriteBorder
                           className="text-2xl text-black"
                           onClick={() => {
+                            if (!isLoggedIn) {
+                            toast("You can not favorite without log in");
+                            return;
+                          }
                             handleFavorite(item.name);
                           }}
                         ></MdFavoriteBorder>
