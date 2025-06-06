@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    //agent { label 'windows' }
     stages {
         stage('Checkout Code') {
             steps {
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo 'Starting build process...'
                 // If you have a build command, add it here:
-                // sh 'npm run build'
+                bat 'npm run build'
             }
         }
 
@@ -29,7 +29,8 @@ pipeline {
             steps {
                 echo 'Executing test scripts...'
                 // If you have test scripts:
-                // sh 'npm test'
+                bat 'npm test'
+                bat 'deploy.bat'
             }
         }
 
@@ -37,7 +38,7 @@ pipeline {
             steps {
                 echo 'Starting deployment process...'
                 // Add your deployment commands here (e.g., Netlify CLI, FTP upload, Docker deployment, etc.)
-                // sh 'netlify deploy --prod'
+                bat 'npm run dev '
             }
         }
     }
