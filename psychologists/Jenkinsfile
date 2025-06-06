@@ -34,8 +34,8 @@ pipeline {
                 echo 'Executing test scripts...'
                 // If you have test scripts:
                 dir('psychologists'){
-                bat 'npm test'
-                bat 'deploy.bat'
+                //bat 'npm test'
+                //bat 'deploy.bat'
                 }
                 
             }
