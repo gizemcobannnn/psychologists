@@ -10,7 +10,7 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col justify-center pt-25 md:flex md:flex-row md:gap-20 md:w-full  md:justify-around md:items-center md:m-auto ">
-        <div className="left flex flex-col w-[600px]  gap-8 justify-center items-start mt-15">
+        <div className="relative -left-20 flex flex-col w-[600px] gap-8 justify-center items-start mt-15">
             <h1 className="text-7xl font-bold text-left text-black">The road to the <span className="text-primary italic">depths</span> of the human soul</h1>
             <p className="text-xl text-justify w-[450px] ">We help you to reveal your potential, overcome challenges and find a guide in your own life with the help of our experienced psychologists.</p>
             <button className="bg-primary text-white  p-12 w-45 text-[20px]" onClick={()=>{navigate("/psychologists")}}>Get started <span className="text-xl">↗</span></button>
