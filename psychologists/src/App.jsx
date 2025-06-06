@@ -17,7 +17,7 @@ function App() {
       {/** <ReadFirebase></ReadFirebase> */}
       {/** <PsychologistPage></PsychologistPage> */}
       <ToastContainer autoClose={1000} pauseOnFocusLoss theme="light" closeOnClick={true}/>
-      {<Header></Header>}
+      <Header></Header>
       <AppRoute></AppRoute>
 
 

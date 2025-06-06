@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
+body, html {
+  margin: 0;
+  padding: 0;
+}
 
 #root {
-  width: 100%;
-  background-color: #F3F3F3;
   font-family: 'Inter', sans-serif;
-  padding: 0 2rem;
   max-width: 1440px;
   margin: 0 auto;
 }

@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  background-color: white;
+  background-color: #F3F3F3;
 
   --color-orange: #FC832C;
   --color-blue: #3470FF;
@@ -30,13 +30,6 @@
 
 a:hover {
   color: var(--primary-color);
-}
-
-body {
-  margin: 0;
-  display: flex;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 button{

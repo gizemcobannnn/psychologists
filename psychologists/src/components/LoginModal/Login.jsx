@@ -101,7 +101,7 @@ export default function Login({closeModal}) {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-5 -translate-y-1/2 text-gray-500"
                   >
-                    {showPassword ? <BiHide className="text-black" /> : <BiShow className="text-black" />}
+                    {showPassword ? <BiShow className="text-black" /> : <BiHide className="text-black" />}
                   </button>
 
                   <ErrorMessage
