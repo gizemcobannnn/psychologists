@@ -24,7 +24,7 @@ export default function HomePage() {
                 <MdDone className='text-primary text-2xl' />
               </div>
               <div className='flex flex-col gap-1'>
-                <p className='text-white/50 text-[12px] '>Experienced psychologists</p>
+                <p className='text-white/50 text-[12px]'>Experienced psychologists</p>
                 <p className='text-white'>15,000</p>
               </div>
               
