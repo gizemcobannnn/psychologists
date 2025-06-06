@@ -46,7 +46,7 @@ pipeline {
                 echo 'Starting deployment process...'
                 // Add your deployment commands here (e.g., Netlify CLI, FTP upload, Docker deployment, etc.)
                 dir('psychologists'){
-                bat 'npm run dev '
+                //bat 'npm run dev '
                 }
             }
         }
