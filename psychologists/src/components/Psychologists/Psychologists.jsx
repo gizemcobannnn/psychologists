@@ -68,7 +68,7 @@ export default function Psychologists({ psychologists }) {
 
   return (
     <>
-      <div id="psyc karts" className="flex flex-col gap-20 w-full bg-[#F3F3F3]">
+      <div id="psyc karts" className="flex flex-col gap-20 max-w-[1360px] bg-[#F3F3F3]">
         {loading && <Fallback />}
         <ul className="w-full flex flex-col gap-10">
           {filteredPsychologists.length > 0 ? (
@@ -77,11 +77,11 @@ export default function Psychologists({ psychologists }) {
                 key={index}
                 className="flex flex-row gap-8 p-5 rounded-3xl bg-white border-slate-300"
               >
-                <div className="flex flex-col min-w-[150px] md:w-[400px] border border-slate-400 rounded-lg p-3 h-min">
+                <div className="flex flex-col min-w-[150px]  md:w-[150px] md:h-[150px]  border border-slate-400 rounded-lg p-3 h-min">
                   <img
                     src={item.avatar_url}
                     alt="avatar"
-                    className="w-full h-auto object-cover"
+                    className="w-[150px] h-[150px] flex object-cover "
                   />
                 </div>
                 <div className="flex flex-col pr-5">

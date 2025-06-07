@@ -65,7 +65,7 @@ export default function Header() {
           <div>
             <span className="text-primary">psychologists.</span>services
           </div>
-          <nav className="hidden md:flex md:flex-row md:gap-6">
+          <nav className="hidden md:flex md:flex-row md:gap-6 md:mr-30 md:ml-30">
             <NavLink to="/" className="text-black">
               Home
             </NavLink>
