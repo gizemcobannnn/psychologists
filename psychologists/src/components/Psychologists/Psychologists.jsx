@@ -68,7 +68,7 @@ export default function Psychologists({ psychologists }) {
 
   return (
     <>
-      <div id="psyc karts" className="flex flex-col gap-20 max-w-[1360px] bg-[#F3F3F3]">
+      <div id="psyc karts" className="flex flex-col gap-20 max-w-[1295px] bg-[#F3F3F3]">
         {loading && <Fallback />}
         <ul className="w-full flex flex-col gap-10">
           {filteredPsychologists.length > 0 ? (

@@ -150,7 +150,7 @@ export default function Header() {
             {!isLoggedIn && (
               <button
                 onClick={() => setIsLogModelOpen(true)}
-                className="authbtn"
+                className="authbtn w-[110px]"
               >
                 Log in
               </button>
@@ -159,9 +159,9 @@ export default function Header() {
             {!isLoggedIn && (
               <button
                 onClick={() => setIsRegModelOpen(true)}
-                className="authbtn"
+                className="w-[150px] text-white bg-primary"
               >
-                Sign up
+                Registration
               </button>
             )}
 
