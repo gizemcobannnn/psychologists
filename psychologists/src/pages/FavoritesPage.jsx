@@ -17,7 +17,7 @@ export default function FavoritesPage() {
   );
 
   return (
-    <div className="flex flex-col gap-5 w-full pl-10 md:pl-30 lg:p-0">
+    <div className="flex flex-col gap-5 w-full pl-10 pr-10 md:pl-30 lg:p-0 md:pr-30">
       {isLoggedIn ? (
         <>
           <Filter />

@@ -61,11 +61,11 @@ export default function Header() {
 
     return (
       <>
-        <header className="fixed top-0 left-0 w-screen z-50 pl-10 md:pl-32 flex flex-row justify-between items-center min-w-[570px] pr-5 pt-3 pb-3 border-b border-slate-300 bg-[#FBFBFB]">
+        <header className="fixed top-0 left-0 w-full z-50 pl-10 md:pl-32 flex flex-row flex-nowrap justify-between items-center x-auto  pr-5 pt-3 pb-3 border-b border-slate-300 bg-[#FBFBFB]">
           <div>
             <span className="text-primary">psychologists.</span>services
           </div>
-          <nav className="hidden md:flex md:flex-row md:gap-6 md:mr-30 md:ml-30">
+          <nav className="hidden ml-4 mr-4 md:flex md:flex-row md:gap-6 lg:mr-30 lg:ml-30 flex-shrink min-w-0">
             <NavLink to="/" className="text-black">
               Home
             </NavLink>
@@ -80,7 +80,7 @@ export default function Header() {
           </nav>
 
           <button
-            className="text-2xl text-primary md:hidden"
+            className="text-2xl text-primary pr-0 md:hidden"
             onClick={() => setIsMenuOpen(true)}
           >
             <IoMenu />
@@ -101,7 +101,7 @@ export default function Header() {
                 <IoClose />
               </button>
             </div>
-            <nav className="flex flex-col gap-3">
+            <nav className="flex flex-col gap-3 flex-shrink min-w-0">
               <NavLink to="/" onClick={() => setIsMenuOpen(false)}>
                 Home
               </NavLink>
@@ -113,7 +113,7 @@ export default function Header() {
               </NavLink>
             </nav>
             {!isLoggedIn && (
-              <div className='flex flex-col items-start'>
+              <div className='flex flex-col items-start '>
               <button
                 onClick={() => setIsLogModelOpen(true)}
                 className="text-primary menuButton"
@@ -138,19 +138,19 @@ export default function Header() {
             )}
           </div>
 
-          <div className="hidden md:flex flex-row gap-6 items-center">
+          <div className="hidden md:flex flex-row gap-6 items-center flex-shrink min-w-0">
             <div className="flex flex-row gap-2 items-center">
               {isLoggedIn && loggedInUser && (
                 <>
                   <IoPersonSharp className="text-2xl bg-primary text-white p-1 rounded-lg w-7 h-7" />
-                  <p className="text-black">{loggedInUser}</p>
+                  <p className="text-black text-[10px] md:text-[15px]">{loggedInUser}</p>
                 </>
               )}
             </div>
             {!isLoggedIn && (
               <button
                 onClick={() => setIsLogModelOpen(true)}
-                className="authbtn w-[110px]"
+                className="authbtn w-[110px] text-[10px] md:text-[15px] min-w-[110px]"
               >
                 Log in
               </button>
@@ -159,7 +159,7 @@ export default function Header() {
             {!isLoggedIn && (
               <button
                 onClick={() => setIsRegModelOpen(true)}
-                className="w-[150px] text-white bg-primary"
+                className="w-[150px] text-white bg-primary text-[10px] md:text-[15px] min-w-[150px]"
               >
                 Registration
               </button>
@@ -167,14 +167,14 @@ export default function Header() {
 
             {isLoggedIn && (
               <button
-                className="authbtn"
+                className="authbtn text-[10px] md:text-[15px] min-w-[100px]"
                 onClick={() => setIsLogoutModelOpen(true)}
               >
                 Log out
               </button>
             )}
           </div>
-          <div className="flex flex-row gap-1">
+          <div className="flex flex-row gap-1 flex-shrink min-w-0 fixed right-8 hidden">
             <div
               className="bg-[#FC832C] h-3 w-3 rounded-lg cursor-pointer"
               onClick={() => changeTheme("#FC832C")}
