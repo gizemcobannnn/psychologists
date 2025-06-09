@@ -61,7 +61,7 @@ export default function Header() {
 
     return (
       <>
-        <header className="fixed top-0 left-0 w-screen z-50 pl-32 flex flex-row justify-between items-center min-w-[570px] pr-5 pt-3 pb-3 border-b border-slate-300 bg-[#FBFBFB]">
+        <header className="fixed top-0 left-0 w-screen z-50 pl-10 md:pl-32 flex flex-row justify-between items-center min-w-[570px] pr-5 pt-3 pb-3 border-b border-slate-300 bg-[#FBFBFB]">
           <div>
             <span className="text-primary">psychologists.</span>services
           </div>

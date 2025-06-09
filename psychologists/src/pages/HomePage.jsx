@@ -15,7 +15,7 @@ export default function HomePage() {
             <p className="text-xl text-justify w-[450px] ">We help you to reveal your potential, overcome challenges and find a guide in your own life with the help of our experienced psychologists.</p>
             <button className="bg-primary text-white  p-12 w-45 text-[20px]" onClick={()=>{navigate("/psychologists")}}>Get started <span className="text-xl">↗</span></button>
         </div>
-        <div className="-right-2 mt-8 relative min-w-[650px] md:min-w-[400px] md:w-[500px] h-[500px]  md:top-0 md:-right-5 lg:right-5 lg:top-0 xl:right-15 lg:max-w-[450px] ">
+        <div className="-right-2 mt-8 mb-7 relative min-w-[650px] md:min-w-[400px] md:w-[500px] h-[500px]  md:top-0 md:-right-5 lg:right-5 lg:top-0 xl:right-15 lg:max-w-[450px] ">
             <img src={mainPhoto} alt="main photo"  className="mt-6 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
             <img src={questionmark} alt="questionmark" className="w-8 h-8 p-2 absolute top-60 left-20 md:top-60 md:-left-4 lg:top-65 lg:-left-4 bg-[#7bcaac] rounded-lg rotate-[-15deg]" />
             <img src={users} alt="users" className="w-8 h-8 p-1 absolute top-20 right-20 md:top-20 md:-right-3 lg:-right-4 lg:top-20 bg-amber-300 rounded-lg text-purple-700 rotate-[15deg]" />
