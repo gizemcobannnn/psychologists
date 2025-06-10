@@ -90,7 +90,7 @@ export default function Appointment({ closeModal, psychologist }) {
                       className="formInputs"
                       placeholder="Name"
                     />
-                    <ErrorMessage name="name" />
+                    <ErrorMessage className="errorMessages" component="span" name="name" />
                   </div>
                   <div className="flex flex-row w-full gap-3">
                     <div className="flex flex-col gap-2">
@@ -101,7 +101,7 @@ export default function Appointment({ closeModal, psychologist }) {
                         type="tel"
                         className="formInputs"
                       />
-                      <ErrorMessage name="phone" className="errorMessages" />
+                      <ErrorMessage name="phone" component="span" className="errorMessages" />
                     </div>
                     <div className="flex flex-col gap-2">
                       <Field
@@ -111,7 +111,7 @@ export default function Appointment({ closeModal, psychologist }) {
                         type="time"
                         className="formInputs"
                       />
-                      <ErrorMessage name="clock" className="errorMessages" />
+                      <ErrorMessage name="clock" component="span" className="errorMessages" />
                     </div>
                   </div>
                   <div className="flex flex-col gap-2">
@@ -122,7 +122,7 @@ export default function Appointment({ closeModal, psychologist }) {
                       type="email"
                       className="formInputs"
                     />
-                    <ErrorMessage name="email" className="errorMessages" />
+                    <ErrorMessage name="email" component="span" className="errorMessages" />
                   </div>
                   <div>
                     <Field
