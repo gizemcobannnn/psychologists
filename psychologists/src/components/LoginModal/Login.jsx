@@ -38,7 +38,26 @@ export default function Login({closeModal}) {
   })
   .catch((error) => {
     dispatch(setIsLoggedIn(false));
-    toast.error(`Login failed. Please try again. ${error.code}`);
+      let message = "Login failed. Please try again.";
+  
+  switch (error.code) {
+    case "auth/invalid-email":
+      message = "Invalid email address.";
+      break;
+    case "auth/user-not-found":
+      message = "No account found with this email.";
+      break;
+    case "auth/wrong-password":
+      message = "Incorrect password.";
+      break;
+    case "auth/too-many-requests":
+      message = "Too many failed attempts. Please try again later.";
+      break;
+    default:
+      message = "An unexpected error occurred. Please try again.";
+  }
+
+  toast.error(message);
       }).finally(()=>{
     setSubmitting(false);
   })

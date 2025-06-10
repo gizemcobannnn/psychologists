@@ -90,3 +90,12 @@ body, html {
   margin-top: 1em;
   display: inline;
 }
+
+
+.react-datepicker__time-container {
+  width: 120px;
+}
+
+.react-datepicker__time-box {
+  width: 120px;
+}
