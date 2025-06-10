@@ -24,7 +24,7 @@ Pages
 
 
 🌐 Live Demo  
-https://psychologists-guide-git-main-gizemcobannnns-projects.vercel.app/
+https://vercel.com/gizemcobannnns-projects/psychologists/GW2qRNRtqBkHivvtL3CEeychZmxf
 
 🚀 Technologies Used
 React   
