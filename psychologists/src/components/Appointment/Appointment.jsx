@@ -3,6 +3,7 @@ import { Field, Formik, Form, ErrorMessage } from "formik";
 import { useId, useState } from "react";
 import { BiX } from "react-icons/bi";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 export default function Appointment({ closeModal, psychologist }) {
   const commentId = useId();
   const emailId = useId();
@@ -17,6 +18,8 @@ export default function Appointment({ closeModal, psychologist }) {
     setTimeout(() => {
       setIsSubmitted(false);
     }, 3000);
+    closeModal();
+    toast.success("Your appointment has been created successfully!");
   };
 
   const validateForm = Yup.object().shape({

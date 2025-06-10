@@ -37,10 +37,8 @@ export default function Login({closeModal}) {
     closeModal();
   })
   .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
     dispatch(setIsLoggedIn(false));
-    toast(errorCode,errorMessage);
+    toast.error(`Login failed. Please try again. ${error.code}`);
       }).finally(()=>{
     setSubmitting(false);
   })

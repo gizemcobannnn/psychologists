@@ -4,7 +4,7 @@ export default function Filter(){
     const [selectedFilter, setSelectedFilter] = useState("Show All");
     
     return(
-    <div className="flex flex-col gap-3 mb-3 mt-25 items-start">
+    <div className="flex flex-col gap-3 mb-3 mt-10 items-start">
         <p>Filters</p>
         <select
           name="sortOptions"
