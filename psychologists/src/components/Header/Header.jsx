@@ -62,8 +62,22 @@ export default function Header() {
     return (
       <>
         <header className="fixed top-0 left-0 w-full z-50 pl-10 md:pl-32 flex flex-row flex-nowrap justify-between items-center x-auto  pr-5 pt-3 pb-3 border-b border-slate-300 bg-[#FBFBFB]">
-          <div>
-            <span className="text-primary">psychologists.</span>services
+          <div className="flex items-start">
+            <span className="text-primary flex flex-row">psychologists.</span>services
+            <div className="flex flex-row gap-1 flex-shrink min-w-0 fixed left-8 top-7">
+              <div
+                className="bg-[#FC832C] h-3 w-3 rounded-lg cursor-pointer"
+                onClick={() => changeTheme("#FC832C")}
+              ></div>
+              <div
+                className="bg-[#3470FF] h-3 w-3 rounded-lg cursor-pointer"
+                onClick={() => changeTheme("#3470FF")}
+              ></div>
+              <div
+                className="bg-[#54BE96] h-3 w-3 rounded-lg cursor-pointer"
+                onClick={() => changeTheme("#54BE96")}
+              ></div>
+            </div>
           </div>
           <nav className="hidden ml-4 mr-4 md:flex md:flex-row md:gap-6 lg:mr-30 lg:ml-30 flex-shrink min-w-0">
             <NavLink to="/" className="text-black">
@@ -74,8 +88,8 @@ export default function Header() {
             </NavLink>
             {isLoggedIn && (
               <NavLink to="/favorites" className="text-black">
-              Favorites
-            </NavLink>
+                Favorites
+              </NavLink>
             )}
           </nav>
 
@@ -113,19 +127,19 @@ export default function Header() {
               </NavLink>
             </nav>
             {!isLoggedIn && (
-              <div className='flex flex-col items-start '>
-              <button
-                onClick={() => setIsLogModelOpen(true)}
-                className="text-primary menuButton"
-              >
-                Log in
-              </button>
-                            <button
-                onClick={() => setIsRegModelOpen(true)}
-                className="text-primary menuButton"
-              >
-                Sign up
-              </button>
+              <div className="flex flex-col items-start ">
+                <button
+                  onClick={() => setIsLogModelOpen(true)}
+                  className="text-primary menuButton"
+                >
+                  Log in
+                </button>
+                <button
+                  onClick={() => setIsRegModelOpen(true)}
+                  className="text-primary menuButton"
+                >
+                  Sign up
+                </button>
               </div>
             )}
             {isLoggedIn && (
@@ -143,7 +157,9 @@ export default function Header() {
               {isLoggedIn && loggedInUser && (
                 <>
                   <IoPersonSharp className="text-2xl bg-primary text-white p-1 rounded-lg w-7 h-7" />
-                  <p className="text-black text-[10px] md:text-[15px]">{loggedInUser}</p>
+                  <p className="text-black text-[10px] md:text-[15px]">
+                    {loggedInUser}
+                  </p>
                 </>
               )}
             </div>
@@ -173,20 +189,6 @@ export default function Header() {
                 Log out
               </button>
             )}
-          </div>
-          <div className="flex flex-row gap-1 flex-shrink min-w-0 fixed right-8 hidden">
-            <div
-              className="bg-[#FC832C] h-3 w-3 rounded-lg cursor-pointer"
-              onClick={() => changeTheme("#FC832C")}
-            ></div>
-            <div
-              className="bg-[#3470FF] h-3 w-3 rounded-lg cursor-pointer"
-              onClick={() => changeTheme("#3470FF")}
-            ></div>
-            <div
-              className="bg-[#54BE96] h-3 w-3 rounded-lg cursor-pointer"
-              onClick={() => changeTheme("#54BE96")}
-            ></div>
           </div>
         </header>
         {isRegModelOpen && (
