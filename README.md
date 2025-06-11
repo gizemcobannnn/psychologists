@@ -1,9 +1,7 @@
-# psychologists
-
-🧠 Psychologists
+Psychologists
 A psychologist consultancy web application built with React, using Firebase for authentication and data storage.
 
-📚 Firebase Documentation
+Firebase Documentation
 Firebase
 Firebase Docs
 
@@ -24,9 +22,9 @@ Pages
 
 
 🌐 Live Demo  
-https://psychologists-guide-git-main-gizemcobannnns-projects.vercel.app/
+https://psychologists-tau.vercel.app/
 
-🚀 Technologies Used
+Technologies Used:  
 React   
 Redux Toolkit  
 Axios  
