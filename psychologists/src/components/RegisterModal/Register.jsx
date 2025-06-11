@@ -34,7 +34,7 @@ export default function Register({ closeModal }) {
   const auth = getAuth(app);
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    const { email, password } = values;
+    const { name,email, password } = values;
 
     createUserWithEmailAndPassword(auth, email, password)
       // eslint-disable-next-line no-unused-vars
@@ -46,10 +46,11 @@ export default function Register({ closeModal }) {
         // Kayıt olduktan sonra otomatik giriş yap
         return signInWithEmailAndPassword(auth, email, password);
       })
+      // eslint-disable-next-line no-unused-vars
       .then((userCredential) => {
         // Giriş başarılı oldu
-        const user = userCredential.user;
-        dispatch(setUserName(user.email));
+        
+        dispatch(setUserName(name));
         dispatch(setIsLoggedIn(true));
         toast.success("Successfully logged in!");
         resetForm();
